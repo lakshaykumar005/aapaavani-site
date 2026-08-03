@@ -1128,13 +1128,64 @@ tr.in .qbar i{width:var(--w,50%);}
 .paybar i:nth-child(3){transition-delay:.32s;}
 
 /* team */
-.team-figure{border-radius:var(--r);overflow:hidden;background:var(--ink);border:1px solid #312a23;}
-.team-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#312a23;border:1px solid #312a23;border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
-.team-grid > div{background:var(--night-2);padding:1.05rem .9rem;text-align:center;}
-.team-grid .tn{font-family:var(--font-sans);font-size:.83rem;font-weight:500;line-height:1.35;}
-.team-grid .tr{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brick-lt);margin-top:.4rem;line-height:1.5;}
-@media (max-width:900px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-@media (max-width:420px){.team-grid{grid-template-columns:1fr;}}
+.team-block{margin-top:.2rem;}
+.team-figure{
+  background:transparent;
+  border:none;
+  border-radius:0;
+  overflow:visible;
+  max-width:980px;
+  margin:0 auto;
+}
+.team-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.35));
+}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(.6rem,1.5vw,1.2rem);
+  max-width:980px;
+  margin:1.1rem auto 0;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  overflow:visible;
+}
+.team-grid > div{
+  background:transparent;
+  padding:.35rem .25rem .15rem;
+  text-align:center;
+  border-top:1px solid rgba(207,138,111,.22);
+  padding-top:.85rem;
+}
+.team-grid .tn{
+  font-family:var(--font-sans);
+  font-size:clamp(.72rem,.68rem + .15vw,.86rem);
+  font-weight:500;
+  line-height:1.35;
+  color:var(--paper);
+}
+.team-grid .tr{
+  font-family:var(--font-mono);
+  font-size:.55rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--brick-lt);
+  margin-top:.4rem;
+  line-height:1.5;
+  opacity:.9;
+}
+@media (max-width:900px){
+  .team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem 1rem;}
+  .team-grid > div:last-child{grid-column:1 / -1;max-width:280px;margin-inline:auto;width:100%;}
+}
+@media (max-width:420px){
+  .team-grid{grid-template-columns:1fr;}
+  .team-grid > div:last-child{grid-column:auto;max-width:none;}
+}
 
 /* client bands */
 .clients{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;}
@@ -1343,8 +1394,8 @@ footer.site .f-bot{
   <section class="band">
     <div class="wrap head-block">
       <div class="eyebrow" data-reveal>Why we are here</div>
-      <h2 class="h-sect" data-reveal style="--d:1">This is not a quotation. It is what we found.</h2>
-      <p class="lede" data-reveal style="--d:2">Your existing system has been maintained by someone who is good at avoiding pollution control notices and not good at treating water. That gap eventually shows up in public complaints, in odour, in a discharge that a hospital campus cannot defend if questioned. You have already seen what real treated water looks like at Excel PU College. What follows is not a concept — it is the actual engineered layout we have drawn up for your site, the programme to build it, and the price to do it.</p>
+      <h2 class="h-sect" data-reveal style="--d:1">A decision for the future.<br>Engineered for your campus.</h2>
+      <p class="lede" data-reveal style="--d:2">Your institution has already recognised the need to move beyond conventional wastewater treatment towards a more sustainable, future-ready solution. Having witnessed the clarity and quality of membrane-treated water at Excel PU College, you have taken a decisive step towards adopting advanced membrane filtration technology for your own campus. What follows is not a concept — it is the actual engineered layout we have drawn up for your site, the programme to build it, and the price to do it.</p>
       <div class="btn-row" data-reveal style="--d:3">
         <a class="btn btn--brick" href="#/engineering">See the engineered plan
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -1439,7 +1490,7 @@ footer.site .f-bot{
         </div>
         <div class="cell after">
           <span class="lab">Excel PU College — MBR treated output</span>
-          <div class="imgbox" data-zoom="assets/excel-sample.webp" data-cap="Grab sample of MBR-treated water — Excel PU College, 700 KLD STP" tabindex="0" role="button" aria-label="Open treated water sample photo full screen">
+          <div class="imgbox" data-zoom="assets/excel-sample.webp" data-cap="Grab sample of MBR-treated water — Excel PU College, 1 MLD STP" tabindex="0" role="button" aria-label="Open treated water sample photo full screen">
             <img src="assets/excel-sample.webp" alt="Grab sample of MBR treated water from Excel PU College, held against the sky for clarity" loading="lazy" width="1100" height="1467">
           </div>
           <p class="proof-cap">Grab sample taken on site at Excel PU College — the plant KVG's own team walked through.</p>
@@ -2495,9 +2546,9 @@ footer.site .f-bot{
         <p class="lede" data-reveal style="--d:2">Twenty-three people across four departments — Design Engineering, Projects, Operation &amp; Maintenance, and Admin &amp; Technical — with the largest team in O&amp;M, because that is where a plant is won or lost after handover.</p>
       </div>
 
-      <div data-reveal="scale">
+      <div class="team-block" data-reveal="scale">
         <div class="team-figure">
-          <img src="assets/team.webp" alt="The Aapaavani team — S Somashekaran, Dr Vishnu Sharma Atikukke, Chinmaya Delampady, B Krishnappa and Dr H N Udaya Shankar" loading="lazy" width="1300" height="623">
+          <img src="assets/team.webp" alt="The Aapaavani team — S Somashekaran, Dr Vishnu Sharma Atikukke, Chinmaya Delampady, B Krishnappa and Dr H N Udaya Shankar" loading="lazy" width="1600" height="720">
         </div>
         <div class="team-grid">
           <div><div class="tn">Mr. S Somashekaran</div><div class="tr">VP — Operations</div></div>
@@ -2545,7 +2596,7 @@ footer.site .f-bot{
         <div class="card" style="border-top:3px solid var(--brick)" data-reveal>
           <div class="eyebrow" style="color:var(--brick)">The plant you visited</div>
           <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">Excel PU College</h3>
-          <p class="note"><b>700 KLD MBR-STP</b> — educational campus. The grab sample on the Vision sheet was taken here.</p>
+          <p class="note"><b>1 MLD MBR-STP</b> — educational campus. The grab sample on the Vision sheet was taken here.</p>
         </div>
         <div class="card" data-reveal style="--d:1">
           <div class="eyebrow">Largest MBR STP built</div>
@@ -2555,12 +2606,12 @@ footer.site .f-bot{
         <div class="card" data-reveal style="--d:2">
           <div class="eyebrow">Largest campus STP</div>
           <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">Srinivas University, Mukka</h3>
-          <p class="note"><b>500 KLD MBR-STP</b> — university campus, completed.</p>
+          <p class="note"><b>750 KLD MBR-STP</b> — university campus, completed.</p>
         </div>
         <div class="card" data-reveal style="--d:3">
           <div class="eyebrow" style="color:var(--brick)">Healthcare</div>
           <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">Srinivasa Port Hospital, Panambur</h3>
-          <p class="note"><b>75 KLD MBR-STP</b> — hospital wastewater, completed.</p>
+          <p class="note"><b>125 KLD MBR-STP</b> — hospital wastewater, completed.</p>
         </div>
         <div class="card" data-reveal style="--d:4">
           <div class="eyebrow" style="color:var(--brick)">Healthcare</div>
@@ -2570,7 +2621,7 @@ footer.site .f-bot{
         <div class="card" data-reveal style="--d:5">
           <div class="eyebrow">Institutional</div>
           <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">Sri Sathya Sai Seva Samsthe, Alike</h3>
-          <p class="note"><b>150 KLD + 75 KLD MBR-STP</b> — two plants on one institutional campus, both completed.</p>
+          <p class="note"><b>250 KLD + 75 KLD MBR-STP</b> — two plants on one institutional campus, both completed.</p>
         </div>
       </div>
     </div>
@@ -2630,11 +2681,11 @@ footer.site .f-bot{
                 <thead><tr><th scope="col">Client</th><th scope="col">Location</th><th scope="col" class="num">Capacity</th><th scope="col">Sector</th><th scope="col">Status</th></tr></thead>
                 <tbody>
                   <tr><td data-l="Client">Karwar City Municipal Corporation</td><td data-l="Location">Karwar</td><td data-l="Capacity" class="num">1.6 MLD</td><td data-l="Sector">Municipal</td><td data-l="Status">Completed</td></tr>
-                  <tr><td data-l="Client">Excel PU College</td><td data-l="Location">—</td><td data-l="Capacity" class="num">700 KLD</td><td data-l="Sector">Educational</td><td data-l="Status">Ongoing</td></tr>
-                  <tr><td data-l="Client">Srinivas University</td><td data-l="Location">Mukka</td><td data-l="Capacity" class="num">500 KLD</td><td data-l="Sector">Educational</td><td data-l="Status">Completed</td></tr>
-                  <tr><td data-l="Client">Sri Sathya Sai Seva Samsthe</td><td data-l="Location">Alike</td><td data-l="Capacity" class="num">150 KLD</td><td data-l="Sector">Institutional</td><td data-l="Status">Completed</td></tr>
+                  <tr><td data-l="Client">Excel PU College</td><td data-l="Location">—</td><td data-l="Capacity" class="num">1000 KLD</td><td data-l="Sector">Educational</td><td data-l="Status">Ongoing</td></tr>
+                  <tr><td data-l="Client">Srinivas University</td><td data-l="Location">Mukka</td><td data-l="Capacity" class="num">750 KLD</td><td data-l="Sector">Educational</td><td data-l="Status">Completed</td></tr>
+                  <tr><td data-l="Client">Sri Sathya Sai Seva Samsthe</td><td data-l="Location">Alike</td><td data-l="Capacity" class="num">250 KLD</td><td data-l="Sector">Institutional</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Alike Sri Sathya Sai Seva Samsthe</td><td data-l="Location">Alike</td><td data-l="Capacity" class="num">75 KLD</td><td data-l="Sector">Institutional</td><td data-l="Status">Completed</td></tr>
-                  <tr><td data-l="Client">Srinivasa Port Hospital</td><td data-l="Location">Panambur</td><td data-l="Capacity" class="num">75 KLD</td><td data-l="Sector">Healthcare</td><td data-l="Status">Completed</td></tr>
+                  <tr><td data-l="Client">Srinivasa Port Hospital</td><td data-l="Location">Panambur</td><td data-l="Capacity" class="num">125 KLD</td><td data-l="Sector">Healthcare</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Suriya Sadashiva Rudra Temple</td><td data-l="Location">Ujire</td><td data-l="Capacity" class="num">75 KLD</td><td data-l="Sector">Religious</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Sri Gurunarasimha Temple</td><td data-l="Location">Saligrama</td><td data-l="Capacity" class="num">75 KLD</td><td data-l="Sector">Religious</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Paradeep Phosphates (MCF township)</td><td data-l="Location">—</td><td data-l="Capacity" class="num">75 KLD</td><td data-l="Sector">Industrial township</td><td data-l="Status">Pending</td></tr>
@@ -2672,11 +2723,11 @@ footer.site .f-bot{
               <table class="dtable">
                 <thead><tr><th scope="col">Client</th><th scope="col">Location</th><th scope="col" class="num">Capacity</th><th scope="col">Sector</th><th scope="col">Status</th></tr></thead>
                 <tbody>
-                  <tr><td data-l="Client">Ramdhan Laundries</td><td data-l="Location">Bangalore</td><td data-l="Capacity" class="num">500 KLD</td><td data-l="Sector">Laundry</td><td data-l="Status">Completed</td></tr>
-                  <tr><td data-l="Client">Provit Foods Pvt Ltd</td><td data-l="Location">Mijar</td><td data-l="Capacity" class="num">400 KLD</td><td data-l="Sector">Food processing</td><td data-l="Status">Ongoing</td></tr>
+                  <tr><td data-l="Client">Ramdhan Laundries</td><td data-l="Location">Bangalore</td><td data-l="Capacity" class="num">700 KLD</td><td data-l="Sector">Laundry</td><td data-l="Status">Completed</td></tr>
+                  <tr><td data-l="Client">Provit Foods Pvt Ltd</td><td data-l="Location">Mijar</td><td data-l="Capacity" class="num">600 KLD</td><td data-l="Sector">Food processing</td><td data-l="Status">Ongoing</td></tr>
                   <tr><td data-l="Client">Megha Fruit Processing</td><td data-l="Location">Puttur</td><td data-l="Capacity" class="num">350 KLD</td><td data-l="Sector">Food processing</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Campco</td><td data-l="Location">Puttur</td><td data-l="Capacity" class="num">300 KLD</td><td data-l="Sector">Chocolate processing</td><td data-l="Status">Completed</td></tr>
-                  <tr><td data-l="Client">Shankar Group (Bindu)</td><td data-l="Location">Puttur</td><td data-l="Capacity" class="num">250 KLD</td><td data-l="Sector">Food &amp; beverage</td><td data-l="Status">Completed</td></tr>
+                  <tr><td data-l="Client">Shankar Group (Bindu)</td><td data-l="Location">Puttur</td><td data-l="Capacity" class="num">350 KLD</td><td data-l="Sector">Food &amp; beverage</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Megha Fruit Processing</td><td data-l="Location">Sangareddy</td><td data-l="Capacity" class="num">200 KLD</td><td data-l="Sector">Food processing</td><td data-l="Status">Ongoing</td></tr>
                   <tr><td data-l="Client">Megha Fruit Processing</td><td data-l="Location">Vizag</td><td data-l="Capacity" class="num">150 KLD</td><td data-l="Sector">Food processing</td><td data-l="Status">Completed</td></tr>
                   <tr><td data-l="Client">Pacific Marines</td><td data-l="Location">Baikampady</td><td data-l="Capacity" class="num">120 KLD</td><td data-l="Sector">Seafood</td><td data-l="Status">Completed</td></tr>
