@@ -521,6 +521,27 @@ body.drawer-open .drawer-a{opacity:1;transform:none;transition-delay:calc(.06s *
 }
 .figure__cap b{color:var(--ink);font-weight:500;}
 
+/* 3D render gallery */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.6rem,1.4vw,1rem);margin-top:1.5rem;}
+@media (max-width:900px){.gal{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:520px){.gal{grid-template-columns:1fr;}}
+.gal__i{
+  position:relative;overflow:hidden;border-radius:var(--r);cursor:zoom-in;
+  border:1px solid var(--line);background:var(--paper-2);aspect-ratio:16/9;
+  transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.gal__i img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);}
+.gal__i:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-2);}
+.gal__i:hover img{transform:scale(1.05);}
+.gal__i figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1.5rem .8rem .6rem;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;
+  background:linear-gradient(0deg,rgba(12,10,8,.88),transparent);
+}
+.band--dark .gal__i{border-color:#312a23;background:var(--night-2);}
+
 #lightbox{
   position:fixed;inset:0;z-index:1200;
   background:rgba(12,10,9,.94);
@@ -666,6 +687,27 @@ tr.in .qbar i{width:var(--w,50%);}
   background-size:64px 64px;
   mask-image:radial-gradient(ellipse 90% 70% at 50% 45%,#000 20%,transparent 78%);
   -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 45%,#000 20%,transparent 78%);
+}
+
+/* subtle 3D render behind the hero */
+.hero__photo{
+  position:absolute;inset:0;z-index:-3;
+  background:url("assets/hero-3d.webp") 18% 58%/cover no-repeat;
+  opacity:.34;
+  mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 64%,transparent 97%);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 64%,transparent 97%);
+  animation:heroPan 44s var(--ease-io) infinite alternate;
+}
+@keyframes heroPan{from{transform:scale(1.05);}to{transform:scale(1.12) translateX(2%);}}
+/* scrim guaranteeing hero text contrast over the render */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:
+    linear-gradient(96deg,rgba(18,15,12,.95) 0%,rgba(18,15,12,.86) 38%,rgba(18,15,12,.5) 68%,rgba(18,15,12,.7) 100%),
+    linear-gradient(180deg,rgba(18,15,12,.7) 0%,transparent 30%,transparent 62%,rgba(18,15,12,.9) 100%);
+}
+@media (max-width:760px){
+  .hero__photo{opacity:.24;background-position:26% 58%;}
 }
 
 .hero .eyebrow{color:var(--brick-lt);}
@@ -1282,6 +1324,7 @@ footer.site .f-bot{
 <article class="page" id="page-vision" data-title="Vision">
 
   <section class="hero">
+    <div class="hero__photo" aria-hidden="true"></div>
     <div class="hero__bg" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hero__grid" aria-hidden="true"></div>
     <div class="wrap hero-anim">
@@ -1379,7 +1422,7 @@ footer.site .f-bot{
       <div class="sect-head head-block">
         <div class="eyebrow" data-reveal>You have already seen this work</div>
         <h2 class="h-sect" data-reveal style="--d:1">Excel PU College. Same technology, one MLD, already running.</h2>
-        <p class="lede" data-reveal style="--d:2">You visited this plant yourself. This is not a rendering of a future promise — it is a system in operation today. On the left is what the design has to take in; on the right is what your own eyes confirmed on site.</p>
+        <p class="lede" data-reveal style="--d:2">You visited this plant yourself. This is not a rendering of a future promise — it is a system in operation today. On the right is what your own eyes confirmed on site.</p>
       </div>
 
       <div class="proof-compare" data-reveal="scale">
@@ -1387,8 +1430,8 @@ footer.site .f-bot{
           <span class="lab">Design inlet — raw campus sewage</span>
           <div class="paramlist">
             <div class="paramrow"><span class="p-n">pH</span><span class="p-raw">6.5 – 8.0</span><span class="p-arrow">→</span><span class="p-tr">6.5 – 8.0</span></div>
-            <div class="paramrow"><span class="p-n">COD</span><span class="p-raw">&lt; 500–600 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 50 ppm</span></div>
-            <div class="paramrow"><span class="p-n">BOD <small style="opacity:.7">(3 d @ 27 °C)</small></span><span class="p-raw">&lt; 250–350 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 10 ppm</span></div>
+            <div class="paramrow"><span class="p-n">COD</span><span class="p-raw">500–600 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 50 ppm</span></div>
+            <div class="paramrow"><span class="p-n">BOD <small style="opacity:.7">(3 d @ 27 °C)</small></span><span class="p-raw">250–350 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 10 ppm</span></div>
             <div class="paramrow"><span class="p-n">TSS</span><span class="p-raw">&lt; 200 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 10 ppm</span></div>
             <div class="paramrow"><span class="p-n">Oil &amp; grease</span><span class="p-raw">&lt; 50 ppm</span><span class="p-arrow">→</span><span class="p-tr">&lt; 10 ppm</span></div>
           </div>
@@ -1455,7 +1498,7 @@ footer.site .f-bot{
       <div class="metrics" data-reveal>
         <div class="stat"><div class="k" data-count="1.5" data-dec="1" data-suffix=" million L">0 million L</div><div class="v">wastewater treated and kept out of the open drain, daily</div></div>
         <div class="stat"><div class="k" data-count="2000" data-prefix="≈">≈0</div><div class="v">households' equivalent daily water demand, at 150 lpcd and 5 per household</div></div>
-        <div class="stat"><div class="k" data-count="2232" data-prefix="≈" data-suffix=" m³">≈0 m³</div><div class="v">total engineered treatment volume across nine process units</div></div>
+        <div class="stat"><div class="k" data-count="2367" data-prefix="≈" data-suffix=" m³">≈0 m³</div><div class="v">total engineered treatment volume across nine process units</div></div>
         <div class="stat"><div class="k">Zero</div><div class="v">untreated discharge to the surrounding community</div></div>
       </div>
       <p class="note" style="margin-top:2rem" data-reveal>Design flow 1,500 m³/day, 24-hour operating period, sized to hold performance across a ±10 % variation in influent characteristics.</p>
@@ -1516,8 +1559,8 @@ footer.site .f-bot{
           </thead>
           <tbody>
             <tr><td data-l="Parameter">pH</td><td data-l="Raw" class="num">6.5 – 8.0</td><td data-l="Treated" class="num">6.5 – 8.0</td><td data-l="Reduction"><span class="note" style="font-size:.78rem">Held neutral</span></td></tr>
-            <tr style="--w:91%"><td data-l="Parameter">COD</td><td data-l="Raw" class="num">&lt; 500 – 600 ppm</td><td data-l="Treated" class="num">&lt; 50 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 91 %</b><span class="qbar good"><i style="--w:91%"></i></span></td></tr>
-            <tr style="--w:97%"><td data-l="Parameter">BOD <small>3 days at 27 °C</small></td><td data-l="Raw" class="num">&lt; 250 – 350 ppm</td><td data-l="Treated" class="num">&lt; 10 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 97 %</b><span class="qbar good"><i style="--w:97%"></i></span></td></tr>
+            <tr style="--w:91%"><td data-l="Parameter">COD</td><td data-l="Raw" class="num">500 – 600 ppm</td><td data-l="Treated" class="num">&lt; 50 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 91 %</b><span class="qbar good"><i style="--w:91%"></i></span></td></tr>
+            <tr style="--w:97%"><td data-l="Parameter">BOD <small>3 days at 27 °C</small></td><td data-l="Raw" class="num">250 – 350 ppm</td><td data-l="Treated" class="num">&lt; 10 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 97 %</b><span class="qbar good"><i style="--w:97%"></i></span></td></tr>
             <tr style="--w:95%"><td data-l="Parameter">TSS</td><td data-l="Raw" class="num">&lt; 200 ppm</td><td data-l="Treated" class="num">&lt; 10 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 95 %</b><span class="qbar good"><i style="--w:95%"></i></span></td></tr>
             <tr style="--w:80%"><td data-l="Parameter">Oil &amp; grease</td><td data-l="Raw" class="num">&lt; 50 ppm</td><td data-l="Treated" class="num">&lt; 10 ppm</td><td data-l="Reduction"><b class="mono" style="font-size:.78rem;color:var(--teal)">≈ 80 %</b><span class="qbar good"><i style="--w:80%"></i></span></td></tr>
           </tbody>
@@ -1597,18 +1640,88 @@ footer.site .f-bot{
             <tr><td data-l="Unit">Bar screen chamber</td><td data-l="Function">Coarse solids removal</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.7 m³</td></tr>
             <tr><td data-l="Unit">Oil &amp; grease chamber</td><td data-l="Function">Fats, oils, grease separation</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.7 m³</td></tr>
             <tr><td data-l="Unit">Equalization tank</td><td data-l="Function">Flow and load buffering</td><td data-l="Dimensions" class="num">20.0 × 15.0 × 2.7 m + FB</td><td data-l="Volume" class="num">810.0 m³</td></tr>
-            <tr><td data-l="Unit">Anoxic tank</td><td data-l="Function">Denitrification</td><td data-l="Dimensions" class="num">20.0 × 2.5 × 3.0 m</td><td data-l="Volume" class="num">≈150 m³</td></tr>
+            <tr><td data-l="Unit">Anoxic tank</td><td data-l="Function">Denitrification</td><td data-l="Dimensions" class="num">20.0 × 2.5 × 2.7 m + FB</td><td data-l="Volume" class="num">135 m³</td></tr>
             <tr><td data-l="Unit">Aeration tank 01</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">11.0 × 7.4 × 5.0 m + FB</td><td data-l="Volume" class="num">407.0 m³</td></tr>
             <tr><td data-l="Unit">Aeration tank 02</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">11.0 × 6.3 × 5.0 m + FB</td><td data-l="Volume" class="num">346.5 m³</td></tr>
             <tr><td data-l="Unit">MBR tank 01 &amp; 02</td><td data-l="Function">Membrane filtration</td><td data-l="Dimensions" class="num">5.0 × 3.0 × 3.7 m + FB (×2)</td><td data-l="Volume" class="num">111.0 m³</td></tr>
             <tr><td data-l="Unit">Treated water tank</td><td data-l="Function">Permeate storage / reuse feed</td><td data-l="Dimensions" class="num">11.0 × 6.9 × 6.5 m + FB</td><td data-l="Volume" class="num">493.4 m³</td></tr>
             <tr><td data-l="Unit">Sludge holding tank</td><td data-l="Function">Waste sludge storage</td><td data-l="Dimensions" class="num">6.0 × 2.5 × 3.7 m + FB</td><td data-l="Volume" class="num">55.5 m³</td></tr>
             <tr><td data-l="Unit">CIP tank</td><td data-l="Function">Membrane cleaning-in-place</td><td data-l="Dimensions" class="num">1.5 × 2.5 × 1.5 m</td><td data-l="Volume" class="num">5.65 m³</td></tr>
-            <tr class="total"><td data-l="Unit">Total engineered treatment volume</td><td data-l="Function">Nine process units</td><td class="num"></td><td data-l="Volume" class="num">≈ 2,232 m³</td></tr>
+            <tr class="total"><td data-l="Unit">Total engineered treatment volume</td><td data-l="Function">Nine process units</td><td class="num"></td><td data-l="Volume" class="num">≈ 2,367 m³</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="note" style="margin-top:1.4rem" data-reveal>Anoxic tank volume is calculated from plan dimensions; it is not listed as a separate line in the drawing's tank schedule. Panel room 3.0 × 6.0 × 3.0 m sits outside the treatment volume. Bar screen and oil &amp; grease chambers are open-type units with removable covers per the drawing notes.</p>
+    </div>
+  </section>
+
+  <!-- 3D MODEL -->
+  <section class="band band--dark">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>The plant, modelled</div>
+        <h2 class="h-sect" data-reveal style="--d:1">What it will actually look like on your campus</h2>
+        <p class="lede" data-reveal style="--d:2">The same general arrangement, built as a 3D model — so the layout can be read by people who do not read engineering drawings. Every tank, walkway, blower and the panel room sits where the drawing puts it. Tap any view to open it full screen.</p>
+      </div>
+
+      <div class="figure" style="background:var(--night-2);border-color:#312a23" data-reveal="scale">
+        <div class="figure__media" style="background:var(--night-2)" data-zoom="assets/layout-annotated.webp" data-cap="KVG Medical College &amp; Hospital — STP (MBR) tentative layout, annotated aerial" tabindex="0" role="button" aria-label="Open annotated 3D layout full screen">
+          <img src="assets/layout-annotated.webp" alt="Annotated aerial view of the 1.5 MLD MBR STP showing aeration tanks 01 and 02, treated water tank, equalization tank, anoxic tank, MBR tanks, panel room, blowers, sludge holding tank, screw press and CIP tank" loading="lazy" width="2200" height="1556">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap" style="background:var(--night);border-top-color:#312a23;color:#9a9084">
+          <span><b style="color:var(--paper)">Tentative layout</b> — annotated aerial, every unit labelled</span>
+          <span>Aapaavani Environmental Solutions Pvt Ltd</span>
+        </div>
+      </div>
+
+      <div class="gal">
+        <figure class="gal__i" data-zoom="assets/render-1.webp" data-cap="Aerial view — full plant layout" tabindex="0" role="button" aria-label="Open aerial view full screen" data-reveal style="--d:0">
+          <img src="assets/render-1.webp" alt="Aerial view of the STP showing tank layout and access walkways" loading="lazy" width="1800" height="1012"><figcaption>01 · Aerial</figcaption>
+        </figure>
+        <figure class="gal__i" data-zoom="assets/render-2.webp" data-cap="Front approach — signage wall and MBR gantry" tabindex="0" role="button" aria-label="Open front approach view full screen" data-reveal style="--d:1">
+          <img src="assets/render-2.webp" alt="Front approach view of the plant with signage wall, lifting gantry and panel room" loading="lazy" width="1800" height="1012"><figcaption>02 · Front approach</figcaption>
+        </figure>
+        <figure class="gal__i" data-zoom="assets/render-3.webp" data-cap="Side elevation — walkway and access stair" tabindex="0" role="button" aria-label="Open side elevation full screen" data-reveal style="--d:2">
+          <img src="assets/render-3.webp" alt="Side elevation showing the roof walkway, access stair and treated water tank" loading="lazy" width="1800" height="1012"><figcaption>03 · Side elevation</figcaption>
+        </figure>
+        <figure class="gal__i" data-zoom="assets/render-4.webp" data-cap="Rear — sludge handling and screw press" tabindex="0" role="button" aria-label="Open rear view full screen" data-reveal style="--d:3">
+          <img src="assets/render-4.webp" alt="Rear view showing the sludge handling area and screw press" loading="lazy" width="1800" height="1012"><figcaption>04 · Rear</figcaption>
+        </figure>
+        <figure class="gal__i" data-zoom="assets/render-5.webp" data-cap="Blower yard and panel room" tabindex="0" role="button" aria-label="Open blower yard view full screen" data-reveal style="--d:4">
+          <img src="assets/render-5.webp" alt="Blower yard with blower enclosures and the panel room entrance" loading="lazy" width="1800" height="1012"><figcaption>05 · Blower yard</figcaption>
+        </figure>
+        <figure class="gal__i" data-zoom="assets/render-6.webp" data-cap="MBR gantry — membrane lifting monorail" tabindex="0" role="button" aria-label="Open MBR gantry view full screen" data-reveal style="--d:5">
+          <img src="assets/render-6.webp" alt="Close view of the membrane lifting gantry and electric chain hoist over the MBR tanks" loading="lazy" width="1800" height="1012"><figcaption>06 · MBR gantry</figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:2.4rem">
+        <div class="card" data-reveal style="--d:0">
+          <div class="eyebrow">Visible in the model, not the schedule</div>
+          <h3 class="h-sub" style="font-size:1.05rem;margin-top:.7rem">Screw press</h3>
+          <p class="note">The model carries a screw press on the sludge line, next to the sludge holding tank — mechanical dewatering rather than drying beds, which is what keeps sludge handling from becoming a manual daily job.</p>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">Visible in the model, not the schedule</div>
+          <h3 class="h-sub" style="font-size:1.05rem;margin-top:.7rem">Backwash tank &amp; pumps</h3>
+          <p class="note">A dedicated backwash tank with permeate and backwash pumps sits between the MBR tanks and the treated water tank, feeding the periodic membrane clean cycle.</p>
+        </div>
+        <div class="card" data-reveal style="--d:2">
+          <div class="eyebrow">Access &amp; maintenance</div>
+          <h3 class="h-sub" style="font-size:1.05rem;margin-top:.7rem">Lifting gantry over the MBR tanks</h3>
+          <p class="note">The yellow portal frame carries the electric chain hoist that lifts membrane modules out for cleaning-in-place — the practical reason the tank depth decision on the Vision sheet matters.</p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.8rem" data-reveal>The 3D layout is marked <b>tentative</b> and shows a screw press and backwash tank that are not separately listed in the drawing's tank schedule or the equipment schedule in the offer. Worth confirming which of these are in supplier scope before the PO.</p>
+
+      <div class="btn-row" data-reveal>
+        <a class="btn btn--light" href="#/documents">Download the 3D layout PDF
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -1619,7 +1732,7 @@ footer.site .f-bot{
         <div class="eyebrow" data-reveal>The process</div>
         <h2 class="h-sect" data-reveal style="--d:1">From bar screen to reusable permeate</h2>
         <p class="lede" data-reveal style="--d:2">Treatment begins with a bar screen to remove coarse solids, followed by an oil &amp; grease chamber for the separation of oil, grease and floating scum. The wastewater is collected in the collection tank, which provides flow equalization before entering the anoxic tank for denitrification. It then passes through the drum screen to remove fine suspended solids before flowing into the aeration tank, where aerobic micro-organisms degrade organic pollutants.</p>
-        <p class="lede" data-reveal style="--d:3;margin-top:1rem">The mixed liquor is then treated in the MBR tank, where submerged membrane modules produce high-quality treated water by retaining biomass and suspended solids. The permeate is drawn by permeate pumps, while the backwash system periodically cleans the membranes to maintain filtration efficiency. After disinfectant dosing, treated water is stored in the treated water tank for reuse or safe discharge. Excess sludge is transferred to the sludge holding tank and sent to the dewatering system for volume reduction.</p>
+        <p class="lede" data-reveal style="--d:3;margin-top:1rem">The mixed liquor is then treated in the MBR tank, where submerged membrane modules produce high-quality treated water by retaining biomass and suspended solids. The permeate is drawn by permeate pumps, while the backwash system periodically cleans the membranes to maintain filtration efficiency. After disinfectant dosing, treated water is stored in the treated water tank for reuse or safe discharge. Excess sludge is transferred to the sludge holding tank and sent to the dewatering system for volume reduction and disposal.</p>
       </div>
 
       <div class="figure" data-reveal="scale">
@@ -1678,13 +1791,77 @@ footer.site .f-bot{
     </div>
   </section>
 
+  <!-- P&ID -->
+  <section class="band band--paper2">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Piping &amp; instrumentation</div>
+        <h2 class="h-sect" data-reveal style="--d:1">Every valve, sensor and control loop, tagged</h2>
+        <p class="lede" data-reveal style="--d:2">The P&amp;ID is where a plant stops being a set of tanks and becomes a controlled system. Every pump, blower, valve and instrument carries a tag number, and every instrument signal is wired back to control panel CP-01 — the PLC, HMI and IoT gateway that runs the plant to its programmed SOP.</p>
+      </div>
+
+      <div class="figure" data-reveal="scale">
+        <div class="figure__media" data-zoom="assets/pid-1.webp" data-cap="AES-KVG-1.5MLD-PID-01 — Sheet 1 of 2: Process, Piping &amp; Instrumentation" tabindex="0" role="button" aria-label="Open P and I diagram sheet 1 full screen">
+          <img src="assets/pid-1.webp" alt="Piping and instrumentation diagram for the 1.5 MLD MBR sewage treatment plant, showing bar screen, oil and grease trap, collection tank, anoxic tank, aeration tank, MBR tank, treated water tank, blower house, sludge holding tank and control panel CP-01" loading="lazy" width="2400" height="1516">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap">
+          <span><b>Drg No. AES-KVG-1.5MLD-PID-01</b> — Sheet 1 of 2, process, piping &amp; instrumentation</span>
+          <span>For review · 02.08.2026 · Scale NTS · Basis: techno-commercial offer</span>
+        </div>
+      </div>
+
+      <div class="figure" style="margin-top:1.6rem" data-reveal="scale">
+        <div class="figure__media" data-zoom="assets/pid-2.webp" data-cap="AES-KVG-1.5MLD-PID-01 — Sheet 2 of 2: Instrument index, line list &amp; control philosophy" tabindex="0" role="button" aria-label="Open P and I diagram sheet 2 full screen">
+          <img src="assets/pid-2.webp" alt="Instrument index, line list and control philosophy for the 1.5 MLD MBR sewage treatment plant" loading="lazy" width="2400" height="2084">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap">
+          <span><b>Sheet 2 of 2</b> — instrument index, line list and control philosophy</span>
+          <span>All tag numbers on Sheet 1 resolve here</span>
+        </div>
+      </div>
+
+      <div class="grid grid-4" style="margin-top:2.6rem">
+        <div class="card stat" data-reveal style="--d:0"><div class="k">CP-01</div><div class="v">PLC + HMI, VFD control and IoT gateway in an MS EP powder-coated enclosure — 415 V / 3 ph / 50 Hz to every motor shown</div></div>
+        <div class="card stat" data-reveal style="--d:1"><div class="k">PDIT-108</div><div class="v">Transmembrane pressure across the MBR — the single most important number for membrane health</div></div>
+        <div class="card stat" data-reveal style="--d:2"><div class="k">ORP-301</div><div class="v">Redox in the anoxic tank, confirming denitrification is actually happening</div></div>
+        <div class="card stat" data-reveal style="--d:3"><div class="k">FIT-201/202</div><div class="v">Flow at inlet and permeate — the pair that proves throughput against the 1.5 MLD design</div></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:2rem">
+        <div class="card" data-reveal>
+          <div class="eyebrow">Duty and standby, everywhere it matters</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>Raw sewage pumps <b>P-104A / P-104B</b> at the collection tank</li>
+            <li>Permeate pumps <b>P-110A / P-110B</b> drawing through the membranes</li>
+            <li>Aeration blowers <b>B-107A / B-107B</b> and MBR scour blowers <b>B-109A / B-109B</b></li>
+            <li>Agitator <b>AG-105</b> in the anoxic tank, RAS pump <b>P-114</b>, backwash pump <b>P-112</b></li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">Why the IoT gateway is not a gimmick</div>
+          <p class="note" style="margin-top:1rem">Every instrument signal runs to CP-01 and out to a dedicated server. That means transmembrane pressure, flow, level and redox are logged continuously rather than written into a logbook — so plant performance can be verified remotely instead of taken on trust. For an institution that has been let down by a previous operator, this is the clause that changes the relationship.</p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.8rem" data-reveal>Note 2 on the drawing states power cabling is not shown; note 3 refers all tag numbers to the instrument index on Sheet 2. Status is <b>For review</b> — this sheet is issued for KVG's comment, not yet for construction.</p>
+    </div>
+  </section>
+
   <!-- MBR tank -->
   <section class="band band--dark">
     <div class="wrap">
       <div class="sect-head head-block">
         <div class="eyebrow" data-reveal>Inside the membrane tank</div>
-        <h2 class="h-sect" data-reveal style="--d:1">What is actually happening in MBR Tank 01 and 02</h2>
-        <p class="lede" data-reveal style="--d:2">A working sketch of the two membrane tanks shown on the drawing, not a decoration. Air scours the membrane surface continuously to keep it from clogging. Suspended solids, floc and bacteria stay on the feed side. Only clean permeate is drawn through to the treated water tank.</p>
+        <h2 class="h-sect" data-reveal style="--d:1">What is actually happening in MBR and Aeration Tank 01 and 02</h2>
+        <p class="lede" data-reveal style="--d:2">A working sketch of the two aeration and membrane tanks shown on the drawing, not a decoration. Air scours the membrane surface continuously to keep it from clogging. Suspended solids, floc and bacteria stay on the feed side. Only clean permeate is drawn through to the treated water tank.</p>
       </div>
 
       <div class="mbr-viz" id="mbrViz" data-reveal="scale" role="img" aria-label="Animation of the membrane bioreactor: mixed liquor and air on the feed side, clean permeate crossing the membrane to the right">
@@ -1703,7 +1880,7 @@ footer.site .f-bot{
         <div class="card stat" data-reveal style="--d:0"><div class="k">0.05 µm</div><div class="v">Membrane pore size — Mitsubishi reinforced PVDF hollow fibre</div></div>
         <div class="card stat" data-reveal style="--d:1"><div class="k">40 m²</div><div class="v">Membrane surface area per module</div></div>
         <div class="card stat" data-reveal style="--d:2"><div class="k">2 × 1,200</div><div class="v">m³/hr air at 0.6 kg/cm² — aeration and MBR scouring blowers, each with standby</div></div>
-        <div class="card stat" data-reveal style="--d:3"><div class="k">90 + 38</div><div class="v">Fine bubble and coarse bubble diffusers, WTE Italy, PVC and EPDM</div></div>
+        <div class="card stat" data-reveal style="--d:3"><div class="k">150 + 60</div><div class="v">Fine bubble and coarse bubble diffusers, WTE Italy, PVC and EPDM</div></div>
       </div>
     </div>
   </section>
@@ -1936,8 +2113,8 @@ footer.site .f-bot{
       <div class="price" data-reveal="scale">
         <div class="price__main">
           <div class="eyebrow" style="color:var(--brick-lt)">Membrane bioreactor (MBR) technology</div>
-          <div class="price__k">₹&nbsp;2,90,00,000</div>
-          <div class="price__w">Rupees Two Crore Ninety Lakhs Only</div>
+          <div class="price__k">₹&nbsp;2,95,00,000</div>
+          <div class="price__w">Rupees Two Crore Ninety Five Lakhs Only</div>
           <p class="note" style="color:#a89e91;margin-top:1.3rem;font-size:.86rem">Sewage Treatment Plant — 1.5 MLD, including supply, installation and commissioning.</p>
           <div class="price__t">
             <span class="pill">Excludes 18 % GST</span>
@@ -2021,8 +2198,8 @@ footer.site .f-bot{
               <div class="spec__r"><div class="s-n">Blower with bed — duty B</div><div class="s-d">1,200 m³/hr at 0.6 kg/cm² · make Akash or equivalent</div><div class="s-q">1 + 1 NO.</div></div>
               <div class="spec__r"><div class="s-n">Motor with bed — duty B</div><div class="s-d">40 hp at 1,440 rpm · make CG or equivalent</div><div class="s-q">1 + 1 NO.</div></div>
               <div class="spec__r"><div class="s-n">Air distribution line</div><div class="s-d">Main header, distribution line and diffuser connectors — 8 in, 4 in, 2.5 in (varying per design) · MOC UPVC / GI C-class</div><div class="s-q">1 LS</div></div>
-              <div class="spec__r"><div class="s-n">Fine bubble diffuser</div><div class="s-d">5–6 m³/hr · disc type, 12 in · PVC and EPDM rubber · make WTE Italy</div><div class="s-q">90 NO.</div></div>
-              <div class="spec__r"><div class="s-n">Coarse bubble diffuser</div><div class="s-d">10–15 m³/hr · disc type, 5 in · PVC and EPDM rubber · make WTE Italy</div><div class="s-q">38 NO.</div></div>
+              <div class="spec__r"><div class="s-n">Fine bubble diffuser</div><div class="s-d">5–6 m³/hr · disc type, 12 in · PVC and EPDM rubber · make WTE Italy</div><div class="s-q">150 NO.</div></div>
+              <div class="spec__r"><div class="s-n">Coarse bubble diffuser</div><div class="s-d">10–15 m³/hr · disc type, 5 in · PVC and EPDM rubber · make WTE Italy</div><div class="s-q">60 NO.</div></div>
               <div class="spec__r"><div class="s-n">Fittings &amp; accessories</div><div class="s-d">Butterfly valves, flanges, NRV, pressure gauges, safety air vents, GI/MS fittings, paints, bolts and nuts · MOC CI / GI / MS</div><div class="s-q">1 LS</div></div>
             </div>
           </div></div></div>
@@ -2048,9 +2225,9 @@ footer.site .f-bot{
             <p>Permeate pumps draw water from the MBR membranes to the treated water collection tank. Backwash pumps clean the membranes as required. The sludge transfer pump moves sludge from the aeration or MBR chamber to the dewatering, storage or drying-bed system. All pumps are self-priming, in duty–standby operation, with separate isolation valve, NRV and required accessories.</p>
             <div class="spec">
               <div class="spec__r"><div class="s-n">Feed pump</div><div class="s-d">Self-priming coupled set, 5 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">1 + 1 NO.</div></div>
-              <div class="spec__r"><div class="s-n">Permeate pump with stand</div><div class="s-d">Self-priming coupled set, 5 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">Per design</div></div>
+              <div class="spec__r"><div class="s-n">Permeate pump with stand</div><div class="s-d">Self-priming coupled set, 3 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">Per design</div></div>
               <div class="spec__r"><div class="s-n">CIP backwash pump with stand</div><div class="s-d">Self-priming coupled set, 2 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">Per design</div></div>
-              <div class="spec__r"><div class="s-n">RAS pump</div><div class="s-d">Sewage pump, 5 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">1 NO.</div></div>
+              <div class="spec__r"><div class="s-n">RAS pump</div><div class="s-d">Sewage pump, 2 HP, 14 m head · MOC CI with SS impeller · make Kirloskar / CG</div><div class="s-q">1 NO.</div></div>
               <div class="spec__r"><div class="s-n">Anoxic agitator</div><div class="s-d">Slow-speed agitator for anoxic tank mixing · MOC SS · make Kirloskar / CG</div><div class="s-q">1 NO.</div></div>
             </div>
           </div></div></div>
@@ -2599,10 +2776,10 @@ footer.site .f-bot{
     <div class="wrap hero-anim">
       <div class="eyebrow">Sheet 06 · Source documents</div>
       <h1>Everything on this site, in its original signed form</h1>
-      <p>Every drawing, table and clause presented across these sheets is drawn from the two documents below. Read them here in the browser, or download the originals.</p>
+      <p>Every drawing, table and clause presented across these sheets is drawn from the four documents below. Read them here in the browser, or download the originals.</p>
       <div class="pagehead-meta">
-        <span class="pill">2 documents</span>
-        <span class="pill">17 pages total</span>
+        <span class="pill">4 documents</span>
+        <span class="pill">25 pages total</span>
         <span class="pill">PDF</span>
       </div>
     </div>
@@ -2669,6 +2846,63 @@ footer.site .f-bot{
         </div>
       </div>
 
+      <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+        <div class="doc__cover">
+          <img src="assets/doc-3d-cover.webp" alt="First sheet of the 3D tentative layout" loading="lazy" width="900" height="636">
+        </div>
+        <div class="doc__body">
+          <div class="eyebrow">3D model</div>
+          <h3>KVG Medical College &amp; Hospital — STP (MBR) Tentative Layout</h3>
+          <p>Six rendered views of the plant as modelled: an annotated aerial with every unit labelled, plus front approach, side elevation, rear, blower yard and a close view of the membrane lifting gantry. The clearest way to see how the general arrangement sits on the ground.</p>
+          <div class="doc__meta">
+            <span class="pill">6 sheets</span>
+            <span class="pill">24.6 MB</span>
+            <span class="pill">Tentative layout</span>
+          </div>
+          <div class="doc__act">
+            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" download="KVG-1.5MLD-MBR-STP-3D-Layout.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Read it here</span>
+            </button>
+            <a class="btn btn--ghost" href="#/engineering">See the views on the Engineering sheet</a>
+          </div>
+          <div class="doc__prev"><div><iframe title="3D tentative layout PDF" data-src="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf#view=Fit" loading="lazy"></iframe></div></div>
+        </div>
+      </div>
+
+      <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+        <div class="doc__cover">
+          <img src="assets/doc-pid-cover.webp" alt="First sheet of the piping and instrumentation diagram" loading="lazy" width="900" height="568">
+        </div>
+        <div class="doc__body">
+          <div class="eyebrow">Piping &amp; instrumentation diagram</div>
+          <h3>1.5 MLD STP — MBR Process P&amp;ID</h3>
+          <p>Two sheets. Sheet 1 carries the full process, piping and instrumentation diagram with every pump, blower, valve and instrument tagged and wired back to control panel CP-01. Sheet 2 is the instrument index, line list and control philosophy that resolves every tag.</p>
+          <div class="doc__meta">
+            <span class="pill">2 sheets</span>
+            <span class="pill">0.6 MB</span>
+            <span class="pill">AES-KVG-1.5MLD-PID-01</span>
+            <span class="pill pill--amber">For review</span>
+          </div>
+          <div class="doc__act">
+            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" download="KVG-1.5MLD-MBR-STP-PID.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-PID.pdf" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Read it here</span>
+            </button>
+            <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          </div>
+          <div class="doc__prev"><div><iframe title="Piping and instrumentation diagram PDF" data-src="docs/KVG-1.5MLD-MBR-STP-PID.pdf#view=Fit" loading="lazy"></iframe></div></div>
+        </div>
+      </div>
+
       <div class="card" style="margin-top:2.2rem;border-left:3px solid var(--teal-lt)" data-reveal>
         <div class="eyebrow">Where each document appears on this site</div>
         <div class="grid grid-2" style="margin-top:1.2rem">
@@ -2683,11 +2917,11 @@ footer.site .f-bot{
             <li>Full equipment schedule → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
             <li>Scope of work and terms &amp; conditions → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
             <li>Team, clients and recent installations → <a href="#/record" style="color:var(--brick)">Track record</a></li>
+            <li>3D model views and annotated layout → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
+            <li>P&amp;ID, instrument tags and control philosophy → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
           </ul>
         </div>
       </div>
-
-      <p class="note" style="margin-top:1.8rem" data-reveal>Both files live in the <b>docs</b> folder alongside this page. If you are viewing this from a copied file without that folder, the download buttons will not resolve — keep <b>index.html</b>, <b>assets</b> and <b>docs</b> together.</p>
 
     </div>
   </section>
