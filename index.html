@@ -1128,27 +1128,29 @@ tr.in .qbar i{width:var(--w,50%);}
 .paybar i:nth-child(3){transition-delay:.32s;}
 
 /* team */
-.team-block{margin-top:.2rem;}
+.team-block{margin-top:.4rem;}
 .team-figure{
   background:transparent;
   border:none;
   border-radius:0;
   overflow:visible;
-  max-width:980px;
-  margin:0 auto;
+  width:100%;
+  margin:0;
 }
 .team-figure img{
   width:100%;
+  max-width:none;
   height:auto;
   display:block;
-  filter:drop-shadow(0 18px 40px rgba(0,0,0,.35));
+  object-fit:contain;
+  object-position:center center;
 }
 .team-grid{
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:clamp(.6rem,1.5vw,1.2rem);
-  max-width:980px;
-  margin:1.1rem auto 0;
+  gap:clamp(.5rem,1.2vw,1rem);
+  width:100%;
+  margin:.85rem 0 0;
   background:transparent;
   border:none;
   border-radius:0;
@@ -1156,14 +1158,14 @@ tr.in .qbar i{width:var(--w,50%);}
 }
 .team-grid > div{
   background:transparent;
-  padding:.35rem .25rem .15rem;
+  padding:.25rem .2rem .1rem;
   text-align:center;
   border-top:1px solid rgba(207,138,111,.22);
-  padding-top:.85rem;
+  padding-top:.8rem;
 }
 .team-grid .tn{
   font-family:var(--font-sans);
-  font-size:clamp(.72rem,.68rem + .15vw,.86rem);
+  font-size:clamp(.74rem,.7rem + .18vw,.9rem);
   font-weight:500;
   line-height:1.35;
   color:var(--paper);
@@ -2548,7 +2550,7 @@ footer.site .f-bot{
 
       <div class="team-block" data-reveal="scale">
         <div class="team-figure">
-          <img src="assets/team.webp" alt="The Aapaavani team — S Somashekaran, Dr Vishnu Sharma Atikukke, Chinmaya Delampady, B Krishnappa and Dr H N Udaya Shankar" loading="lazy" width="1600" height="720">
+          <img src="assets/team.webp" alt="The Aapaavani team — S Somashekaran, Dr Vishnu Sharma Atikukke, Chinmaya Delampady, B Krishnappa and Dr H N Udaya Shankar" loading="lazy" width="1600" height="754">
         </div>
         <div class="team-grid">
           <div><div class="tn">Mr. S Somashekaran</div><div class="tr">VP — Operations</div></div>
