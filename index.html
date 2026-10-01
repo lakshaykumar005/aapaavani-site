@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#16120f">
-<title>KVG Medical College &amp; Hospital — 1.5 MLD MBR STP · Aapaavani</title>
-<meta name="description" content="Engineering and techno-commercial proposal for a 1.5 MLD membrane bioreactor sewage treatment plant at K.V.G. Medical College &amp; Hospital, Sullia. By Aapaavani Environmental Solutions Pvt Ltd, Mangalore.">
+<title>K.V.G. Sullia — 1.5 MLD &amp; 200 KLD MBR STPs · Aapaavani</title>
+<meta name="description" content="Engineering proposals for two membrane bioreactor sewage treatment plants in Sullia: 1.5 MLD for K.V.G. Medical College &amp; Hospital and 200 KLD for K.V.G. Ayurveda Medical College. By Aapaavani Environmental Solutions Pvt Ltd, Mangalore.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23912411'/%3E%3Cpath d='M9 23 16 9l7 14' stroke='%23f7f3ed' stroke-width='2.4' fill='none' stroke-linejoin='round'/%3E%3Cpath d='M12.4 19h7.2' stroke='%23f7f3ed' stroke-width='2.4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -346,6 +346,14 @@ body.drawer-open #drawer{opacity:1;visibility:visible;transform:none;}
 body.drawer-open .drawer-a{opacity:1;transform:none;transition-delay:calc(.06s * var(--i,0) + .08s);}
 .drawer-a .d-num{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;color:var(--brick-lt);flex:none;width:2.2em;}
 .drawer-a:hover,.drawer-a[aria-current="page"]{color:var(--brick-lt);}
+.drawer-a--sub{font-size:1.15rem;padding:.75rem 0 .75rem 1rem;}
+.drawer-h{
+  margin-top:1.4rem;padding-bottom:.5rem;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brick-lt);
+  opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.drawer-h.ay{color:var(--teal-pale);}
+body.drawer-open .drawer-h{opacity:1;transform:none;transition-delay:calc(.06s * var(--i,0) + .08s);}
 .drawer-foot{margin-top:auto;padding-top:2rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted-2);line-height:1.9;}
 
 /* ============================================================
@@ -930,7 +938,7 @@ tr.in .qbar i{width:var(--w,50%);}
 .flow-node:hover circle.dot{transform:scale(1.32);filter:brightness(1.22);}
 .flow-node text.n{font-family:var(--font-mono);font-size:11px;font-weight:500;fill:#f7f3ed;text-anchor:middle;pointer-events:none;}
 .flow-node text.l{font-family:var(--font-sans);font-size:13px;fill:var(--muted);text-anchor:middle;pointer-events:none;}
-#flowpath{fill:none;stroke:url(#flowGrad);stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(145,36,17,.22));}
+.flowpath{fill:none;stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(145,36,17,.22));}
 .branch{fill:none;stroke:var(--line-2);stroke-width:2;stroke-dasharray:5 5;}
 .flow-dot{fill:var(--ink);filter:drop-shadow(0 0 5px rgba(145,36,17,.55));}
 .flow-legend{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:1.1rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.04em;color:var(--muted-2);}
@@ -1246,6 +1254,167 @@ tr.in .qbar i{width:var(--w,50%);}
 .doc__prev.open{grid-template-rows:1fr;}
 .doc__prev iframe{width:100%;height:min(74vh,780px);border:0;display:block;background:var(--paper-2);}
 
+/* compact document card (supporting sheets) */
+.doc--sm{grid-template-columns:1fr;}
+.doc--sm .doc__cover{border-right:none;border-bottom:1px solid var(--line);padding:1.3rem;height:220px;}
+.doc--sm .doc__cover img{max-width:100%;max-height:100%;width:auto;}
+.doc--sm .doc__body h3{font-size:1.1rem;}
+
+/* document groups + filter */
+.seg{
+  display:inline-flex;flex-wrap:wrap;gap:.25rem;padding:.3rem;
+  border:1px solid var(--line-2);border-radius:100px;background:#fff;
+}
+.seg button{
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.58rem 1rem;border-radius:100px;color:var(--muted);
+  transition:background var(--t-fast) var(--ease),color var(--t-fast) var(--ease);
+}
+.seg button:hover{color:var(--ink);background:var(--paper-2);}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.seg button[aria-pressed="true"][data-filter="hospital"]{background:var(--brick);}
+.seg button[aria-pressed="true"][data-filter="ayurveda"]{background:var(--teal-lt);}
+.doc-group{margin-top:clamp(2.4rem,5vw,3.4rem);}
+.doc-group[hidden]{display:none;}
+.doc-group__h{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding-bottom:1rem;margin-bottom:1.6rem;border-bottom:2px solid var(--brick);
+}
+.doc-group--ay .doc-group__h{border-bottom-color:var(--teal-lt);}
+.doc-group__h h2{font-size:clamp(1.35rem,1.1rem + 1vw,1.9rem);margin-top:.5rem;}
+.doc-group--ay .eyebrow{color:var(--teal-lt);}
+.doc-sub{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin:2rem 0 1rem;}
+.doc-old{
+  margin-top:1.4rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem 1.4rem;flex-wrap:wrap;
+  padding:1rem 1.2rem;border:1px dashed var(--line-2);border-radius:var(--r);
+  font-family:var(--font-sans);font-size:.84rem;color:var(--muted);
+}
+.doc-old b{color:var(--ink);font-weight:500;}
+
+/* ============================================================
+   TWO-PROJECT SHELL
+   ============================================================ */
+.btn--teal{background:var(--teal-lt);border-color:var(--teal-lt);}
+.btn--teal:hover{background:var(--teal);border-color:var(--teal);}
+
+/* per-project strip at the top of each project page */
+.projbar{
+  background:var(--night);color:var(--paper);
+  border-bottom:1px solid #2a231d;
+  padding:0 var(--pad-x);
+}
+.projbar .wrap{display:flex;align-items:center;gap:.6rem 1.4rem;flex-wrap:wrap;min-height:54px;padding:.5rem 0;}
+.projbar__id{
+  display:flex;align-items:center;gap:.7rem;min-width:0;
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#a89e91;
+}
+.projbar__id b{color:var(--paper);font-weight:500;}
+.projbar__tag{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  padding:.24rem .55rem;border-radius:100px;background:var(--brick);color:var(--paper);
+  font-size:.6rem;letter-spacing:.12em;
+}
+.projbar--ay .projbar__tag{background:var(--teal-lt);}
+.projbar__tabs{display:flex;gap:.15rem;margin-left:auto;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.projbar__tabs::-webkit-scrollbar{display:none;}
+.projbar__tabs a,.projbar__tabs button{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;
+  color:#bdb3a6;text-decoration:none;padding:.5rem .68rem;border-radius:var(--r-sm);white-space:nowrap;
+  transition:color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.projbar__tabs a:hover,.projbar__tabs button:hover{color:#fff;background:rgba(255,255,255,.08);}
+.projbar__tabs a[aria-current="page"]{color:#fff;background:rgba(207,138,111,.18);}
+.projbar__tabs .sw{color:var(--brick-lt);border:1px solid #3d352d;margin-left:.4rem;}
+.projbar--ay .projbar__tabs .sw{color:var(--brick-lt);}
+.projbar:not(.projbar--ay) .projbar__tabs .sw{color:var(--teal-pale);}
+@media (max-width:820px){
+  .projbar__id .full{display:none;}
+  .projbar__tabs{margin-left:0;width:100%;}
+}
+
+/* Ayurveda page head — teal accent */
+.pagehead--ay{border-bottom-color:var(--teal-lt);}
+.pagehead--ay .eyebrow{color:var(--teal-pale);}
+.pagehead--ay .hero__bg span:nth-child(1){background:radial-gradient(circle,rgba(2,108,122,.5),transparent 68%);}
+.band--ay-dark{background:#0b2226;color:var(--paper);border-bottom-color:#08343a;}
+.band--ay-dark .eyebrow{color:var(--teal-pale);}
+.band--ay-dark p.lede{color:#b9d3d7;}
+.band--ay-dark .note{color:#8fb0b5;}
+.band--ay-dark .note b{color:var(--paper);}
+.band--ay-dark .card{background:#0f2c31;border-color:#1b4248;}
+.band--ay-dark .card:hover{border-color:#2a5a61;box-shadow:0 24px 50px -30px rgba(0,0,0,.9);}
+.band--ay-dark .stat .k{color:var(--teal-pale);}
+.band--ay-dark .stat .v{color:#9cbcc1;}
+.ay-accent .eyebrow{color:var(--teal-lt);}
+.ay-accent .dtable th{border-bottom-color:var(--teal-lt);}
+.ay-accent .stat .k{color:var(--teal-lt);}
+
+/* overview — hero project chips */
+.hero-projects{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem;}
+.hero-proj{
+  display:flex;align-items:center;gap:.9rem;text-decoration:none;
+  padding:.8rem 1.1rem .8rem .8rem;border-radius:var(--r);
+  border:1px solid rgba(247,243,237,.18);background:rgba(16,14,12,.45);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  transition:border-color var(--t) var(--ease),background var(--t) var(--ease),transform var(--t) var(--ease);
+}
+.hero-proj:hover{border-color:rgba(247,243,237,.5);background:rgba(16,14,12,.7);transform:translateY(-2px);}
+.hero-proj .cap{
+  font-family:var(--font-display);font-size:1.25rem;line-height:1;color:var(--paper);
+  padding:.55rem .7rem;border-radius:var(--r-sm);background:var(--brick);white-space:nowrap;
+}
+.hero-proj.ay .cap{background:var(--teal-lt);}
+.hero-proj .nm{font-family:var(--font-sans);font-size:.86rem;line-height:1.35;color:#e6ddd1;}
+.hero-proj .nm small{display:block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#8f857a;margin-top:.2rem;}
+
+/* overview — project cards */
+.pcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,2.4vw,1.8rem);}
+@media (max-width:900px){.pcards{grid-template-columns:minmax(0,1fr);}}
+.pcard{
+  display:flex;flex-direction:column;background:#fff;
+  border:1px solid var(--line);border-top:4px solid var(--brick);border-radius:var(--r);overflow:hidden;
+  transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease);
+}
+.pcard--ay{border-top-color:var(--teal-lt);}
+.pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.pcard__img{display:block;aspect-ratio:1900/1343;background:var(--paper-2);overflow:hidden;border-bottom:1px solid var(--line);cursor:zoom-in;}
+.pcard__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);}
+.pcard:hover .pcard__img img{transform:scale(1.025);}
+.pcard__b{padding:clamp(1.3rem,2.8vw,2rem);display:flex;flex-direction:column;flex:1;}
+.pcard__no{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brick);}
+.pcard--ay .pcard__no{color:var(--teal-lt);}
+.pcard h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.7rem);margin:.7rem 0 .2rem;}
+.pcard__cap{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.pcard__cap .k{font-size:clamp(2rem,1.5rem + 2vw,2.9rem);line-height:1.05;color:var(--brick);font-variant-numeric:tabular-nums;}
+.pcard--ay .pcard__cap .k{color:var(--teal-lt);}
+.pcard__cap .v{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);}
+.pcard__b > p{font-family:var(--font-sans);font-size:.88rem;line-height:1.65;color:var(--muted);}
+.pcard__stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:1.4rem 0 0;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+}
+.pcard__stats > div{background:var(--paper);padding:.8rem .9rem;}
+.pcard__stats .k{font-size:1.12rem;line-height:1.15;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pcard__stats .v{font-family:var(--font-sans);font-size:.72rem;line-height:1.45;color:var(--muted);margin-top:.3rem;}
+@media (max-width:460px){.pcard__stats{grid-template-columns:minmax(0,1fr);}}
+.pcard__act{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:auto;padding-top:1.5rem;}
+
+/* comparison table — project columns */
+.cmp th.h,.cmp td.h{color:var(--brick-lt);}
+.cmp th.a,.cmp td.a{color:var(--teal-pale);}
+.cmp td:first-child{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8f857a;white-space:nowrap;}
+.band--dark .cmp td.h,.band--dark .cmp td.a{color:#ddd3c6;}
+.cmp td .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.5rem;vertical-align:middle;background:var(--brick-lt);}
+.cmp td.a .dot{background:var(--teal-pale);}
+@media (max-width:720px){.cmp td:first-child{white-space:normal;color:var(--paper);font-size:.72rem;}}
+
+/* duty tags in load lists */
+.duty{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.16rem .5rem;border-radius:100px;}
+.duty.w{color:var(--teal);background:rgba(2,108,122,.1);}
+.duty.s{color:#8a6520;background:rgba(222,156,16,.14);}
+.dtable.load td{padding-top:.62rem;padding-bottom:.62rem;}
+[data-jumpto]{scroll-margin-top:calc(var(--nav-h) + 1rem);}
+
 /* ============================================================
    PAGE NAV / FOOTER
    ============================================================ */
@@ -1315,7 +1484,8 @@ footer.site .f-bot{
    PRINT
    ============================================================ */
 @media print{
-  #topbar,#drawer,#progress,#totop,#lightbox,.pagenav,.scroll-cue,.figure__zoom,body::after{display:none!important;}
+  #topbar,#drawer,#progress,#totop,#lightbox,.pagenav,.scroll-cue,.figure__zoom,.projbar,.seg,body::after{display:none!important;}
+  .doc-group[hidden]{display:block!important;}
   body{background:#fff;color:#000;}
   #app{padding-top:0;}
   .page{display:block!important;page-break-after:always;}
@@ -1334,18 +1504,17 @@ footer.site .f-bot{
 <div id="progress" aria-hidden="true"></div>
 
 <header id="topbar">
-  <a class="brand" href="#/vision" aria-label="KVG Medical College and Hospital — Aapaavani proposal, home">
-    <img class="b-mark" src="assets/kvg-logo.webp" alt="K.V.G. Medical College &amp; Hospital" width="300" height="288">
+  <a class="brand" href="#/overview" aria-label="K.V.G. Sullia — Aapaavani proposals, home">
+    <img class="b-mark" src="assets/kvg-logo.webp" alt="K.V.G. Sullia" width="300" height="288">
     <span class="b-div" aria-hidden="true"></span>
-    <span class="b-txt">1.5&nbsp;MLD&nbsp;MBR&nbsp;STP<br>Aapaavani&nbsp;·&nbsp;Rev&nbsp;A</span>
+    <span class="b-txt">1.5&nbsp;MLD&nbsp;+&nbsp;200&nbsp;KLD&nbsp;MBR&nbsp;STPs<br>Aapaavani&nbsp;·&nbsp;Rev&nbsp;B</span>
   </a>
 
   <nav id="nav" aria-label="Proposal sections">
-    <a class="nav-a" href="#/vision"><span class="n-num">01</span>Vision</a>
-    <a class="nav-a" href="#/engineering"><span class="n-num">02</span>Engineering</a>
-    <a class="nav-a" href="#/programme"><span class="n-num">03</span>Programme</a>
-    <a class="nav-a" href="#/commercial"><span class="n-num">04</span>Commercial</a>
-    <a class="nav-a" href="#/record"><span class="n-num">05</span>Track&nbsp;record</a>
+    <a class="nav-a" href="#/overview">Overview</a>
+    <a class="nav-a" href="#/vision" data-routes="vision engineering programme commercial"><span class="n-num">P1</span>1.5&nbsp;MLD&nbsp;Hospital</a>
+    <a class="nav-a" href="#/ayurveda" data-routes="ayurveda"><span class="n-num" style="color:var(--teal-lt)">P2</span>200&nbsp;KLD&nbsp;Ayurveda</a>
+    <a class="nav-a" href="#/record">Track&nbsp;record</a>
     <a class="nav-dl" href="#/documents">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Documents
@@ -1356,12 +1525,17 @@ footer.site .f-bot{
 </header>
 
 <nav id="drawer" aria-label="Mobile menu">
-  <a class="drawer-a" style="--i:0" href="#/vision"><span class="d-num">01</span>Vision</a>
-  <a class="drawer-a" style="--i:1" href="#/engineering"><span class="d-num">02</span>Engineering</a>
-  <a class="drawer-a" style="--i:2" href="#/programme"><span class="d-num">03</span>Programme</a>
-  <a class="drawer-a" style="--i:3" href="#/commercial"><span class="d-num">04</span>Commercial</a>
-  <a class="drawer-a" style="--i:4" href="#/record"><span class="d-num">05</span>Track record</a>
-  <a class="drawer-a" style="--i:5" href="#/documents"><span class="d-num">06</span>Documents</a>
+  <a class="drawer-a" style="--i:0" href="#/overview"><span class="d-num">00</span>Overview</a>
+  <div class="drawer-h" style="--i:1">Project 01 · 1.5 MLD · K.V.G. Medical College &amp; Hospital</div>
+  <a class="drawer-a drawer-a--sub" style="--i:2" href="#/vision"><span class="d-num">01</span>Vision</a>
+  <a class="drawer-a drawer-a--sub" style="--i:3" href="#/engineering"><span class="d-num">02</span>Engineering</a>
+  <a class="drawer-a drawer-a--sub" style="--i:4" href="#/programme"><span class="d-num">03</span>Programme</a>
+  <a class="drawer-a drawer-a--sub" style="--i:5" href="#/commercial"><span class="d-num">04</span>Commercial</a>
+  <div class="drawer-h ay" style="--i:6">Project 02 · 200 KLD · K.V.G. Ayurveda Medical College</div>
+  <a class="drawer-a drawer-a--sub" style="--i:7" href="#/ayurveda"><span class="d-num" style="color:var(--teal-pale)">01</span>Process, drawings &amp; load list</a>
+  <div class="drawer-h" style="--i:8">Both projects</div>
+  <a class="drawer-a" style="--i:9" href="#/record"><span class="d-num">05</span>Track record</a>
+  <a class="drawer-a" style="--i:10" href="#/documents"><span class="d-num">06</span>Documents</a>
   <div class="drawer-foot">
     Aapaavani Environmental Solutions Pvt Ltd<br>
     Shed No. C-54, Baikampady, Mangalore DK-575011<br>
@@ -1372,16 +1546,180 @@ footer.site .f-bot{
 <main id="app">
 
 <!-- ══════════════════════════════════════════════════════════
-     PAGE 01 — VISION
+     PAGE 00 — OVERVIEW (both projects)
      ══════════════════════════════════════════════════════════ -->
-<article class="page" id="page-vision" data-title="Vision">
+<article class="page" id="page-overview" data-title="Overview">
 
   <section class="hero">
     <div class="hero__photo" aria-hidden="true"></div>
     <div class="hero__bg" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hero__grid" aria-hidden="true"></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Prepared exclusively for K.V.G. Medical College &amp; Hospital, Sullia</div>
+      <div class="eyebrow">Prepared for the K.V.G. institutions, Sullia</div>
+      <h1>Two campuses in Sullia. <em>One standard</em> of treated water.</h1>
+      <p class="hero-sub">Two ESTAPRO™ membrane bioreactor sewage treatment plants: 1.5 MLD for K.V.G. Medical College &amp; Hospital and 200 KLD for K.V.G. Ayurveda Medical College. Same technology and the same team, each engineered to its own site and its own drawings.</p>
+      <div class="hero-projects">
+        <a class="hero-proj" href="#/vision"><span class="cap">1.5 MLD</span><span class="nm">K.V.G. Medical College &amp; Hospital<small>Project 01 · AES/KVGH/STP/2026-27/111</small></span></a>
+        <a class="hero-proj ay" href="#/ayurveda"><span class="cap">200 KLD</span><span class="nm">K.V.G. Ayurveda Medical College<small>Project 02 · AES/KVGA/STP/2026-27/112</small></span></a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>Scroll</div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>The two projects</div>
+        <h2 class="h-sect" data-reveal style="--d:1">Pick a campus. Every drawing and document for it is one click away.</h2>
+        <p class="lede" data-reveal style="--d:2">Each project has its own sheets, its own drawing set and its own panel load list. The track record and the team behind them are shared, and so is the documents library, which you can filter by campus.</p>
+      </div>
+
+      <div class="pcards">
+        <div class="pcard" data-reveal style="--d:0">
+          <div class="pcard__img" data-zoom="assets/process-flow-r2.webp" data-cap="K.V.G. Medical College &amp; Hospital — 1.5 MLD STP, process flow diagram" tabindex="0" role="button" aria-label="Open the 1.5 MLD process flow diagram full screen">
+            <img src="assets/process-flow-r2.webp" alt="Process flow diagram of the 1.5 MLD sewage treatment plant for K.V.G. Medical College and Hospital" loading="lazy" width="1900" height="1343">
+          </div>
+          <div class="pcard__b">
+            <div class="pcard__no">Project 01 · AES/KVGH/STP/2026-27/111</div>
+            <h3>K.V.G. Medical College &amp; Hospital</h3>
+            <div class="pcard__cap"><span class="k">1.5 MLD</span><span class="v">MBR sewage treatment plant</span></div>
+            <p>A full treatment block: step screen, oil and grease chamber, equalization, anoxic denitrification, two aeration tanks at 5 m side water depth, twin MBR tanks and a 349 m³ treated water tank. Issued with the techno-commercial offer, programme, P&amp;ID and 3D model.</p>
+            <div class="pcard__stats">
+              <div><div class="k">1,500 m³</div><div class="v">design flow per day</div></div>
+              <div><div class="k">≈ 2,020 m³</div><div class="v">tank volume in the schedule</div></div>
+              <div><div class="k">222.8 kW</div><div class="v">connected panel load, 22 drives</div></div>
+            </div>
+            <div class="pcard__act">
+              <a class="btn btn--brick" href="#/vision">Open the 1.5 MLD proposal
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost" href="#/documents?p=hospital">Its documents</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard pcard--ay" data-reveal style="--d:1">
+          <div class="pcard__img" data-zoom="assets/ay-process-flow.webp" data-cap="K.V.G. Ayurveda Medical College — 200 KLD STP, process flow diagram" tabindex="0" role="button" aria-label="Open the 200 KLD process flow diagram full screen">
+            <img src="assets/ay-process-flow.webp" alt="Process flow diagram of the 200 KLD sewage treatment plant for K.V.G. Ayurveda Medical College" loading="lazy" width="1900" height="1343">
+          </div>
+          <div class="pcard__b">
+            <div class="pcard__no">Project 02 · AES/KVGA/STP/2026-27/112</div>
+            <h3>K.V.G. Ayurveda Medical College</h3>
+            <div class="pcard__cap"><span class="k">200 KLD</span><span class="v">MBR sewage treatment plant</span></div>
+            <p>A compact membrane train: static screen, oil and grease chamber with skimmer, collection tank, an aeration tank drawn around the existing footings on site, and a 4 × 2 × 3 m MBR tank holding two membrane cassettes. Sludge goes to a drying bed.</p>
+            <div class="pcard__stats">
+              <div><div class="k">200 m³</div><div class="v">design flow per day</div></div>
+              <div><div class="k">4.0 × 2.0 m</div><div class="v">MBR tank, 3.0 m deep</div></div>
+              <div><div class="k">38.2 kW</div><div class="v">connected panel load, 16 drives</div></div>
+            </div>
+            <div class="pcard__act">
+              <a class="btn btn--teal" href="#/ayurveda">Open the 200 KLD proposal
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost" href="#/documents?p=ayurveda">Its documents</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Side by side</div>
+        <h2 class="h-sect" data-reveal style="--d:1">The two plants, compared line by line</h2>
+        <p class="lede" data-reveal style="--d:2">Everything in this table comes from the drawings, process flow diagrams and panel load lists issued for each campus. Where a document has not been issued for one plant, the table says so.</p>
+      </div>
+
+      <div class="table-scroll" data-reveal style="--d:2">
+        <table class="dtable cmp">
+          <thead>
+            <tr><th scope="col"></th><th scope="col" class="h">1.5 MLD · Medical College &amp; Hospital</th><th scope="col" class="a">200 KLD · Ayurveda Medical College</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Design flow</td><td data-l="1.5 MLD" class="h"><span class="dot"></span>1,500 m³/day · ≈ 62.5 m³/hr over 24 h</td><td data-l="200 KLD" class="a"><span class="dot"></span>200 m³/day · ≈ 8.3 m³/hr over 24 h</td></tr>
+            <tr><td>Inlet screening</td><td data-l="1.5 MLD" class="h">Mechanised step screen</td><td data-l="200 KLD" class="a">Static screen</td></tr>
+            <tr><td>Oil &amp; grease</td><td data-l="1.5 MLD" class="h">Oil &amp; grease chamber</td><td data-l="200 KLD" class="a">Oil &amp; grease chamber with skimmer</td></tr>
+            <tr><td>Buffering</td><td data-l="1.5 MLD" class="h">Equalization / collection tank, 732.6 m³</td><td data-l="200 KLD" class="a">Aerated collection tank</td></tr>
+            <tr><td>Denitrification</td><td data-l="1.5 MLD" class="h">Anoxic tank with agitator, 193.1 m³</td><td data-l="200 KLD" class="a">Not in the process train</td></tr>
+            <tr><td>Biological stage</td><td data-l="1.5 MLD" class="h">Aeration tanks 01 &amp; 02, 5.0 m side water depth</td><td data-l="200 KLD" class="a">Aeration tank, 9.52 × 4.35 m, 3.65 m liquid depth</td></tr>
+            <tr><td>Membrane stage</td><td data-l="1.5 MLD" class="h">MBR tanks 01 &amp; 02, 5.0 × 3.0 m each</td><td data-l="200 KLD" class="a">MBR tank 4.0 × 2.0 × 3.0 m, two cassettes</td></tr>
+            <tr><td>Treated water</td><td data-l="1.5 MLD" class="h">Treated water tank, 349.4 m³</td><td data-l="200 KLD" class="a">Treated water tank</td></tr>
+            <tr><td>Sludge</td><td data-l="1.5 MLD" class="h">Sludge holding tank, then dewatering</td><td data-l="200 KLD" class="a">Sludge drying bed</td></tr>
+            <tr><td>Air blowers</td><td data-l="1.5 MLD" class="h">Aeration 60 HP + MBR 50 HP, each with standby</td><td data-l="200 KLD" class="a">15 HP, with standby</td></tr>
+            <tr><td>Panel load</td><td data-l="1.5 MLD" class="h">222.79 kW connected · 127.71 kW operating</td><td data-l="200 KLD" class="a">38.24 kW connected · 21.83 kW operating</td></tr>
+            <tr><td>Drawings</td><td data-l="1.5 MLD" class="h">GA AES/KVG/STP/PLN-01 (25 Aug 2026), P&amp;ID, 3D model</td><td data-l="200 KLD" class="a">Aeration and MBR tank GA, AES/KVG/STP/PLN/SEC-01 (28–29 Sep 2026)</td></tr>
+            <tr><td>Commercial offer</td><td data-l="1.5 MLD" class="h">QT/STP/2026-27/76 · ₹2.95 crore + GST</td><td data-l="200 KLD" class="a">Not part of this document set</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>What the two plants share</div>
+        <h2 class="h-sect" data-reveal style="--d:1">Two sizes, one way of building them</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card" data-reveal style="--d:0">
+          <div class="eyebrow">Same membrane barrier</div>
+          <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">ESTAPRO™ MBR on both campuses</h3>
+          <p class="note">Submerged membrane modules sit in the MBR tank at each plant and hold back biomass and suspended solids mechanically, however the biology is performing that day. Permeate pumps draw the clean water through, and a backwash system keeps the membranes open.</p>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">Same control philosophy</div>
+          <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">MCC cum PLC panel at each plant</h3>
+          <p class="note">Both load lists specify an STP main control panel on 415 V, 3-phase supply with 230 V AC / 24 V DC control, an energy meter, electromagnetic flow metering, vacuum and pressure transmitters on the membrane line, and six float level switches.</p>
+        </div>
+        <div class="card" data-reveal style="--d:2">
+          <div class="eyebrow">Same team</div>
+          <h3 class="h-sub" style="font-size:1.1rem;margin-top:.8rem">One point of contact for both</h3>
+          <p class="note">The same Aapaavani design, projects and operation &amp; maintenance teams are behind both plants. Questions about either campus go to one address: <a href="mailto:projects@aapaavani.com" style="color:var(--brick)">projects@aapaavani.com</a>.</p>
+        </div>
+      </div>
+
+      <div class="metrics" style="margin-top:clamp(2rem,4vw,3rem)" data-reveal>
+        <div class="stat"><div class="k" data-count="1.7" data-dec="1" data-suffix=" MLD">0 MLD</div><div class="v">combined design capacity across both campuses</div></div>
+        <div class="stat"><div class="k" data-count="2">0</div><div class="v">membrane bioreactor plants, one partner</div></div>
+        <div class="stat"><div class="k" data-count="38">0</div><div class="v">motor and valve drives across the two control panels</div></div>
+        <div class="stat"><div class="k" data-count="261" data-suffix=" kW">0 kW</div><div class="v">combined connected load, 149.5 kW operating</div></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="pagenav" aria-label="Page navigation">
+    <a class="prev" href="#/vision"><span class="pn-k">Project 01 — 1.5 MLD</span><span class="pn-t">K.V.G. Medical College &amp; Hospital</span></a>
+    <a class="next" href="#/ayurveda"><span class="pn-k">Project 02 — 200 KLD</span><span class="pn-t">K.V.G. Ayurveda Medical College</span></a>
+  </nav>
+</article>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 01 — VISION (Project 01 · 1.5 MLD)
+     ══════════════════════════════════════════════════════════ -->
+<article class="page" id="page-vision" data-title="1.5 MLD · Vision">
+
+  <div class="projbar">
+    <div class="wrap">
+      <div class="projbar__id"><span class="projbar__tag">P1</span><span><span class="full">Project 01 · </span><b>K.V.G. Medical College &amp; Hospital</b> · 1.5 MLD</span></div>
+      <nav class="projbar__tabs" aria-label="1.5 MLD project sheets">
+        <a href="#/vision">01 Vision</a>
+        <a href="#/engineering">02 Engineering</a>
+        <a href="#/programme">03 Programme</a>
+        <a href="#/commercial">04 Commercial</a>
+        <a href="#/documents?p=hospital">Documents</a>
+        <a class="sw" href="#/ayurveda">200 KLD Ayurveda →</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__photo" aria-hidden="true"></div>
+    <div class="hero__bg" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="wrap hero-anim">
+      <div class="eyebrow">Project 01 · Prepared for K.V.G. Medical College &amp; Hospital, Sullia</div>
       <h1>An institution that trains tomorrow's doctors is ready to set the <em>environmental standard</em> for every campus in Sullia.</h1>
       <p class="hero-sub">A 1.5 MLD ESTAPRO™ membrane bioreactor system, engineered to General Arrangement Drawing AES/KVG/STP/PLN-01 — built on what we found when we actually walked your campus.</p>
       <div class="hero-meta">
@@ -1437,7 +1775,7 @@ footer.site .f-bot{
         <div class="card refine-card" data-reveal style="--d:1">
           <div class="num">02 — Screening</div>
           <h3>The plant is only as good as what never reaches it.</h3>
-          <p>Every blower, diffuser, pump and membrane downstream depends on debris never getting past the first stage. We'd specify a mechanised, automatic fine screen at the inlet rather than a manual bar screen — so an unattended night shift or a monsoon surge doesn't become the moment something expensive gets damaged. The offer already carries a rotary drum screen at 100 m³/hr, 2–4 mm aperture, in SS 304.</p>
+          <p>Every blower, diffuser, pump and membrane downstream depends on debris never getting past the first stage. We'd specify a mechanised, automatic fine screen at the inlet rather than a manual bar screen — so an unattended night shift or a monsoon surge doesn't become the moment something expensive gets damaged. The revised process flow diagram does exactly that: a mechanised step screen at the inlet in place of the manual bar screen.</p>
           <div class="viz" data-viz>
             <div class="screen-viz" id="screenViz">
               <div class="screen-rack"></div>
@@ -1449,17 +1787,17 @@ footer.site .f-bot{
         <div class="card refine-card" data-reveal style="--d:2">
           <div class="num">03 — Tank depth</div>
           <h3>Five metres, not seven.</h3>
-          <p>The tentative plan runs the aeration tanks close to seven metres of water depth. Every extra metre adds hydrostatic pressure the diffusers have to push air against — which lowers oxygen transfer efficiency, wears diffuser membranes faster, and pushes the blower selection into a higher-pressure, higher-energy category. Servicing diffusers at that depth is also a genuinely harder maintenance job. Five metres keeps oxygen transfer efficient and diffuser access practical for the life of the plant.</p>
+          <p>The first tentative plan ran the aeration tanks close to seven metres of water depth. Every extra metre adds hydrostatic pressure the diffusers have to push air against — which lowers oxygen transfer efficiency, wears diffuser membranes faster, and pushes the blower selection into a higher-pressure, higher-energy category. Servicing diffusers at that depth is also a genuinely harder maintenance job. Five metres keeps oxygen transfer efficient and diffuser access practical for the life of the plant. The 25 August revision of the drawing adopts it: 5.0 m of water with 2.0 m of freeboard.</p>
           <div class="viz" data-viz>
             <div class="depth-viz">
               <div class="depth-col">
                 <div class="depth-tank seven" data-bubbles="5"><div class="depth-diffuser"></div></div>
-                <div class="depth-tag warn">7 m — as drawn</div>
+                <div class="depth-tag warn">7 m — first draft</div>
                 <div class="depth-meta">higher blower pressure</div>
               </div>
               <div class="depth-col">
                 <div class="depth-tank five" data-bubbles="5"><div class="depth-diffuser"></div></div>
-                <div class="depth-tag good">5 m — recommended</div>
+                <div class="depth-tag good">5 m — adopted</div>
                 <div class="depth-meta">efficient oxygen transfer</div>
               </div>
             </div>
@@ -1524,7 +1862,7 @@ footer.site .f-bot{
         </div>
         <div class="tab-panel" id="t2" role="tabpanel" aria-labelledby="tb2">
           <h4>Footprint</h4>
-          <p>The full treatment building, from bar screen to treated water tank, fits inside an envelope of roughly 36 m by 21.4 m — under 780 sqm — because the membrane replaces the secondary clarifier and lets the biological tanks run at a higher biomass concentration. A conventional ASP sized for the same 1.5 MLD load, with a separate clarifier and larger aeration volume, would need meaningfully more land than your campus has to give. Across the ESTAPRO™ range we size MBR plants at roughly half the footprint of an equivalent conventional STP.</p>
+          <p>The full treatment block, from inlet screen to treated water tank, stays compact on the general arrangement drawing because the membrane replaces the secondary clarifier and lets the biological tanks run at a higher biomass concentration. A conventional ASP sized for the same 1.5 MLD load, with a separate clarifier and larger aeration volume, would need meaningfully more land than your campus has to give. Across the ESTAPRO™ range we size MBR plants at roughly half the footprint of an equivalent conventional STP.</p>
         </div>
         <div class="tab-panel" id="t3" role="tabpanel" aria-labelledby="tb3">
           <h4>Reuse quality</h4>
@@ -1551,7 +1889,7 @@ footer.site .f-bot{
       <div class="metrics" data-reveal>
         <div class="stat"><div class="k" data-count="1.5" data-dec="1" data-suffix=" million L">0 million L</div><div class="v">wastewater treated and kept out of the open drain, daily</div></div>
         <div class="stat"><div class="k" data-count="2000" data-prefix="≈">≈0</div><div class="v">households' equivalent daily water demand, at 150 lpcd and 5 per household</div></div>
-        <div class="stat"><div class="k" data-count="2367" data-prefix="≈" data-suffix=" m³">≈0 m³</div><div class="v">total engineered treatment volume across nine process units</div></div>
+        <div class="stat"><div class="k" data-count="2020" data-prefix="≈" data-suffix=" m³">≈0 m³</div><div class="v">total engineered treatment volume in the tank schedule</div></div>
         <div class="stat"><div class="k">Zero</div><div class="v">untreated discharge to the surrounding community</div></div>
       </div>
       <p class="note" style="margin-top:2rem" data-reveal>Design flow 1,500 m³/day, 24-hour operating period, sized to hold performance across a ±10 % variation in influent characteristics.</p>
@@ -1559,6 +1897,7 @@ footer.site .f-bot{
   </section>
 
   <nav class="pagenav" aria-label="Page navigation">
+    <a class="prev" href="#/overview"><span class="pn-k">Back to</span><span class="pn-t">Overview of both projects</span></a>
     <a class="next" href="#/engineering">
       <span class="pn-k">Next — 02</span>
       <span class="pn-t">Engineering</span>
@@ -1567,19 +1906,33 @@ footer.site .f-bot{
 </article>
 
 <!-- ══════════════════════════════════════════════════════════
-     PAGE 02 — ENGINEERING
+     PAGE 02 — ENGINEERING (Project 01 · 1.5 MLD)
      ══════════════════════════════════════════════════════════ -->
-<article class="page" id="page-engineering" data-title="Engineering">
+<article class="page" id="page-engineering" data-title="1.5 MLD · Engineering">
+
+  <div class="projbar">
+    <div class="wrap">
+      <div class="projbar__id"><span class="projbar__tag">P1</span><span><span class="full">Project 01 · </span><b>K.V.G. Medical College &amp; Hospital</b> · 1.5 MLD</span></div>
+      <nav class="projbar__tabs" aria-label="1.5 MLD project sheets">
+        <a href="#/vision">01 Vision</a>
+        <a href="#/engineering">02 Engineering</a>
+        <a href="#/programme">03 Programme</a>
+        <a href="#/commercial">04 Commercial</a>
+        <a href="#/documents?p=hospital">Documents</a>
+        <a class="sw" href="#/ayurveda">200 KLD Ayurveda →</a>
+      </nav>
+    </div>
+  </div>
 
   <header class="pagehead">
     <div class="hero__bg" aria-hidden="true"><span></span></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Sheet 02 · The engineered plan</div>
+      <div class="eyebrow">Project 01 · Sheet 02 · The engineered plan</div>
       <h1>General arrangement, drawn to your site</h1>
-      <p>Nine process units, a fixed engineered footprint and a structural design basis — all settled before a single conversation about price. This is the actual drawing set, not a rendering.</p>
+      <p>Every process unit, a fixed engineered footprint and a structural design basis — all settled before a single conversation about price. This is the actual drawing set, now at its 25 August 2026 revision, not a rendering.</p>
       <div class="pagehead-meta">
         <span class="pill">Drg AES/KVG/STP/PLN-01</span>
-        <span class="pill">Dated 30.07.2026</span>
+        <span class="pill">Revised 25.08.2026</span>
         <span class="pill">Scale N.T.S.</span>
         <span class="pill">Drawn / designed: PRP</span>
       </div>
@@ -1649,12 +2002,12 @@ footer.site .f-bot{
       <div class="sect-head head-block">
         <div class="eyebrow" data-reveal>The drawing set</div>
         <h2 class="h-sect" data-reveal style="--d:1">General arrangement — plan and sections</h2>
-        <p class="lede" data-reveal style="--d:2">Tap either sheet to open it full-screen, where you can zoom and pan into any dimension. Both sheets are also in the downloadable PDF.</p>
+        <p class="lede" data-reveal style="--d:2">Tap either sheet to open it full-screen, where you can zoom and pan into any dimension. This is the 25 August 2026 revision: the aeration and treated water tanks now sit in one block alongside the equalization, anoxic and MBR tanks, with a 3 m baffle wall between equalization and anoxic.</p>
       </div>
 
       <div class="figure" data-reveal="scale">
-        <div class="figure__media" data-zoom="assets/ga-plan.webp" data-cap="AES/KVG/STP/PLN-01 — General Arrangement, Plan" tabindex="0" role="button" aria-label="Open general arrangement plan full screen">
-          <img src="assets/ga-plan.webp" alt="1.5 MLD MBR based STP — general arrangement plan for KVG Medical College and Hospital, Sullia" loading="lazy" width="2200" height="1555">
+        <div class="figure__media" data-zoom="assets/ga-plan-r2.webp" data-cap="AES/KVG/STP/PLN-01 — General Arrangement, Plan · Rev 25.08.2026" tabindex="0" role="button" aria-label="Open general arrangement plan full screen">
+          <img src="assets/ga-plan-r2.webp" alt="1.5 MLD MBR based STP — general arrangement plan, revision of 25 August 2026, for KVG Medical College and Hospital, Sullia" loading="lazy" width="2600" height="1838">
           <span class="figure__zoom">
             <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
             Zoom
@@ -1662,13 +2015,13 @@ footer.site .f-bot{
         </div>
         <div class="figure__cap">
           <span><b>Drg No. AES/KVG/STP/PLN-01</b> — General Arrangement, Plan</span>
-          <span>Dated 30.07.2026 · Scale NTS · Drawn / Designed: PRP</span>
+          <span>Dated 25.08.2026 · Scale NTS · Drawn / Designed: PRP · <a href="docs/KVG-1.5MLD-MBR-STP-GA-Plan-Rev-25Aug2026.pdf" download style="color:var(--brick)">Sheet PDF ↓</a></span>
         </div>
       </div>
 
       <div class="figure" style="margin-top:1.6rem" data-reveal="scale">
-        <div class="figure__media" data-zoom="assets/ga-sections.webp" data-cap="AES/KVG/STP/PLN-01 — Cross sections A-A, B-B, C-C" tabindex="0" role="button" aria-label="Open cross sections drawing full screen">
-          <img src="assets/ga-sections.webp" alt="1.5 MLD MBR based STP — cross sections and tank schedule for KVG Medical College and Hospital, Sullia" loading="lazy" width="2200" height="1555">
+        <div class="figure__media" data-zoom="assets/ga-sections-r2.webp" data-cap="AES/KVG/STP/PLN-01 — Cross sections A-A, B-B, C-C · Rev 25.08.2026" tabindex="0" role="button" aria-label="Open cross sections drawing full screen">
+          <img src="assets/ga-sections-r2.webp" alt="1.5 MLD MBR based STP — cross sections and tank schedule, revision of 25 August 2026, for KVG Medical College and Hospital, Sullia" loading="lazy" width="2600" height="1838">
           <span class="figure__zoom">
             <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
             Zoom
@@ -1676,31 +2029,31 @@ footer.site .f-bot{
         </div>
         <div class="figure__cap">
           <span><b>Drg No. AES/KVG/STP/PLN-01</b> — Sections A-A, B-B, C-C and tank schedule</span>
-          <span>M30 concrete · Fe550 rebar · SBC 120 kN/m²</span>
+          <span>M30 concrete · Fe550 rebar · SBC 120 kN/m² · <a href="docs/KVG-1.5MLD-MBR-STP-GA-Sections-Rev-25Aug2026.pdf" download style="color:var(--brick)">Sheet PDF ↓</a></span>
         </div>
       </div>
 
       <div class="hr"></div>
 
       <h3 class="h-sub" data-reveal>Tank schedule</h3>
-      <p class="note" data-reveal style="--d:1;margin-bottom:1.4rem">Internal dimensions with freeboard where noted. Aeration depth below reflects the recommended 5 m side water depth rather than the 7 m carried on the tentative drawing — see decision 03 on the Vision sheet.</p>
+      <p class="note" data-reveal style="--d:1;margin-bottom:1.4rem">Internal dimensions and volumes as printed in the tank schedule on the 25 August 2026 revision, with freeboard (FB) where noted. This revision adopts the recommended <b>5.0 m side water depth</b> in both aeration tanks, with 2.0 m of freeboard — see decision 03 on the Vision sheet.</p>
       <div class="table-scroll" data-reveal style="--d:2">
         <table class="dtable">
           <thead>
             <tr><th scope="col">Unit</th><th scope="col">Function</th><th scope="col" class="num">Internal dimensions</th><th scope="col" class="num">Volume</th></tr>
           </thead>
           <tbody>
-            <tr><td data-l="Unit">Bar screen chamber</td><td data-l="Function">Coarse solids removal</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.7 m³</td></tr>
-            <tr><td data-l="Unit">Oil &amp; grease chamber</td><td data-l="Function">Fats, oils, grease separation</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.7 m³</td></tr>
-            <tr><td data-l="Unit">Equalization tank</td><td data-l="Function">Flow and load buffering</td><td data-l="Dimensions" class="num">20.0 × 15.0 × 2.7 m + FB</td><td data-l="Volume" class="num">810.0 m³</td></tr>
-            <tr><td data-l="Unit">Anoxic tank</td><td data-l="Function">Denitrification</td><td data-l="Dimensions" class="num">20.0 × 2.5 × 2.7 m + FB</td><td data-l="Volume" class="num">135 m³</td></tr>
-            <tr><td data-l="Unit">Aeration tank 01</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">11.0 × 7.4 × 5.0 m + FB</td><td data-l="Volume" class="num">407.0 m³</td></tr>
-            <tr><td data-l="Unit">Aeration tank 02</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">11.0 × 6.3 × 5.0 m + FB</td><td data-l="Volume" class="num">346.5 m³</td></tr>
-            <tr><td data-l="Unit">MBR tank 01 &amp; 02</td><td data-l="Function">Membrane filtration</td><td data-l="Dimensions" class="num">5.0 × 3.0 × 3.7 m + FB (×2)</td><td data-l="Volume" class="num">111.0 m³</td></tr>
-            <tr><td data-l="Unit">Treated water tank</td><td data-l="Function">Permeate storage / reuse feed</td><td data-l="Dimensions" class="num">11.0 × 6.9 × 6.5 m + FB</td><td data-l="Volume" class="num">493.4 m³</td></tr>
-            <tr><td data-l="Unit">Sludge holding tank</td><td data-l="Function">Waste sludge storage</td><td data-l="Dimensions" class="num">6.0 × 2.5 × 3.7 m + FB</td><td data-l="Volume" class="num">55.5 m³</td></tr>
-            <tr><td data-l="Unit">CIP tank</td><td data-l="Function">Membrane cleaning-in-place</td><td data-l="Dimensions" class="num">1.5 × 2.5 × 1.5 m</td><td data-l="Volume" class="num">5.65 m³</td></tr>
-            <tr class="total"><td data-l="Unit">Total engineered treatment volume</td><td data-l="Function">Nine process units</td><td class="num"></td><td data-l="Volume" class="num">≈ 2,367 m³</td></tr>
+            <tr><td data-l="Unit">Bar screen chamber</td><td data-l="Function">Inlet screening</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.72 m³</td></tr>
+            <tr><td data-l="Unit">Oil &amp; grease chamber</td><td data-l="Function">Fats, oils, grease separation</td><td data-l="Dimensions" class="num">1.20 × 1.20 × 1.20 m</td><td data-l="Volume" class="num">1.72 m³</td></tr>
+            <tr><td data-l="Unit">Equalization tank</td><td data-l="Function">Flow and load buffering</td><td data-l="Dimensions" class="num">198 m² × 3.70 m + 0.3 FB</td><td data-l="Volume" class="num">732.60 m³</td></tr>
+            <tr><td data-l="Unit">Anoxic tank</td><td data-l="Function">Denitrification</td><td data-l="Dimensions" class="num">52.2 m² × 3.70 m + 0.3 FB</td><td data-l="Volume" class="num">193.14 m³</td></tr>
+            <tr><td data-l="Unit">Aeration tank 01</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">10.50 × 5.44 × 5.00 m + 2.0 FB</td><td data-l="Volume" class="num">285.60 m³</td></tr>
+            <tr><td data-l="Unit">Aeration tank 02</td><td data-l="Function">Biological treatment</td><td data-l="Dimensions" class="num">10.50 × 5.24 × 5.00 m + 2.0 FB</td><td data-l="Volume" class="num">275.10 m³</td></tr>
+            <tr><td data-l="Unit">MBR tank 01 &amp; 02</td><td data-l="Function">Membrane filtration</td><td data-l="Dimensions" class="num">5.00 × 3.00 × 3.70 m + 0.3 FB (×2)</td><td data-l="Volume" class="num">111.00 m³</td></tr>
+            <tr><td data-l="Unit">Treated water tank</td><td data-l="Function">Permeate storage / reuse feed</td><td data-l="Dimensions" class="num">10.50 × 5.12 × 6.50 m + 0.5 FB</td><td data-l="Volume" class="num">349.44 m³</td></tr>
+            <tr><td data-l="Unit">Sludge holding tank</td><td data-l="Function">Waste sludge storage</td><td data-l="Dimensions" class="num">6.70 × 2.60 × 3.70 m + 0.3 FB</td><td data-l="Volume" class="num">64.45 m³</td></tr>
+            <tr><td data-l="Unit">CIP tank</td><td data-l="Function">Membrane cleaning-in-place</td><td data-l="Dimensions" class="num">2.50 × 1.50 × 1.50 m</td><td data-l="Volume" class="num">5.65 m³</td></tr>
+            <tr class="total"><td data-l="Unit">Total engineered treatment volume</td><td data-l="Function">All units in the schedule</td><td class="num"></td><td data-l="Volume" class="num">≈ 2,020 m³</td></tr>
           </tbody>
         </table>
       </div>
@@ -1769,7 +2122,7 @@ footer.site .f-bot{
         </div>
       </div>
 
-      <p class="note" style="margin-top:1.8rem" data-reveal>The 3D layout is marked <b>tentative</b> and shows a screw press and backwash tank that are not separately listed in the drawing's tank schedule or the equipment schedule in the offer. Worth confirming which of these are in supplier scope before the PO.</p>
+      <p class="note" style="margin-top:1.8rem" data-reveal>The 3D layout is marked <b>tentative</b> and shows a screw press and backwash tank that are not separately listed in the drawing's tank schedule or the equipment schedule in the offer. Worth confirming which of these are in supplier scope before the PO. The 3D model and the P&amp;ID below were prepared against the <b>30 July arrangement</b> and have not yet been redrawn to the 25 August revision, which re-orients the tank block and resizes the tanks. Read them for the process and equipment, and the general arrangement drawing above for the dimensions.</p>
 
       <div class="btn-row" data-reveal>
         <a class="btn btn--light" href="#/documents">Download the 3D layout PDF
@@ -1784,20 +2137,20 @@ footer.site .f-bot{
       <div class="sect-head head-block">
         <div class="eyebrow" data-reveal>The process</div>
         <h2 class="h-sect" data-reveal style="--d:1">From bar screen to reusable permeate</h2>
-        <p class="lede" data-reveal style="--d:2">Treatment begins with a bar screen to remove coarse solids, followed by an oil &amp; grease chamber for the separation of oil, grease and floating scum. The wastewater is collected in the collection tank, which provides flow equalization before entering the anoxic tank for denitrification. It then passes through the drum screen to remove fine suspended solids before flowing into the aeration tank, where aerobic micro-organisms degrade organic pollutants.</p>
+        <p class="lede" data-reveal style="--d:2">Treatment begins with a mechanised step screen that lifts solids out of the incoming sewage, followed by an oil &amp; grease chamber for the separation of oil, grease and floating scum. The wastewater is collected in the collection tank, which provides flow equalization before entering the anoxic tank, where an agitator keeps the contents mixed for denitrification. It then flows into the aeration tank, where aerobic micro-organisms degrade organic pollutants.</p>
         <p class="lede" data-reveal style="--d:3;margin-top:1rem">The mixed liquor is then treated in the MBR tank, where submerged membrane modules produce high-quality treated water by retaining biomass and suspended solids. The permeate is drawn by permeate pumps, while the backwash system periodically cleans the membranes to maintain filtration efficiency. After disinfectant dosing, treated water is stored in the treated water tank for reuse or safe discharge. Excess sludge is transferred to the sludge holding tank and sent to the dewatering system for volume reduction and disposal.</p>
       </div>
 
       <div class="figure" data-reveal="scale">
-        <div class="figure__media" data-zoom="assets/process-flow.webp" data-cap="1.5 MLD STP — Process Flow Diagram" tabindex="0" role="button" aria-label="Open process flow diagram full screen">
-          <img src="assets/process-flow.webp" alt="Process flow diagram — bar screen, oil and grease chamber, collection tank, anoxic tank, drum screen, MBR and aeration tank, permeate pumps, disinfectant dosing, treated water tank, sludge holding tank" loading="lazy" width="1900" height="1344">
+        <div class="figure__media" data-zoom="assets/process-flow-r2.webp" data-cap="1.5 MLD STP — Process Flow Diagram (revised)" tabindex="0" role="button" aria-label="Open process flow diagram full screen">
+          <img src="assets/process-flow-r2.webp" alt="Process flow diagram — step screen, oil and grease chamber, collection tank, anoxic tank, aeration tank, MBR tank, permeate pumps, backwash system, disinfectant dosing, treated water tank, sludge holding tank to dewatering" loading="lazy" width="1900" height="1343">
           <span class="figure__zoom">
             <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
             Zoom
           </span>
         </div>
         <div class="figure__cap">
-          <span><b>Process Flow Diagram</b> — Bar screen → Oil &amp; grease → Collection → Anoxic → Drum screen → MBR / Aeration → Permeate pumps → Dosing → Treated water</span>
+          <span><b>Process Flow Diagram</b> — Step screen → Oil &amp; grease → Collection → Anoxic → Aeration / MBR → Permeate pumps → Dosing → Treated water</span>
           <span>Side stream: Sludge holding → Dewatering</span>
         </div>
       </div>
@@ -1818,12 +2171,12 @@ footer.site .f-bot{
           </defs>
           <path class="branch" d="M660,90 C660,150 620,205 560,225"/>
           <path class="branch" d="M800,170 C800,110 840,60 900,42"/>
-          <path id="flowpath" d="M40,170 C95,170 95,90 150,90 C205,90 205,170 270,170 C335,170 335,90 400,90 C460,90 460,170 520,170 C590,170 590,90 660,90 C730,90 730,170 800,170 C865,170 865,90 930,90 C995,90 995,150 1060,150"/>
+          <path id="flowpath" class="flowpath" stroke="url(#flowGrad)" d="M40,170 C95,170 95,90 150,90 C205,90 205,170 270,170 C335,170 335,90 400,90 C460,90 460,170 520,170 C590,170 590,90 660,90 C730,90 730,170 800,170 C865,170 865,90 930,90 C995,90 995,150 1060,150"/>
           <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="0s"><mpath href="#flowpath"/></animateMotion></circle>
           <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="3s"><mpath href="#flowpath"/></animateMotion></circle>
           <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="6s"><mpath href="#flowpath"/></animateMotion></circle>
           <g class="flow-node"><circle class="dot" cx="40" cy="170" r="14" fill="#912411"/><text class="n" x="40" y="174">1</text><text class="l" x="40" y="212">Inlet</text></g>
-          <g class="flow-node"><circle class="dot" cx="150" cy="90" r="14" fill="#8f3630"/><text class="n" x="150" y="94">2</text><text class="l" x="150" y="58">Bar screen</text></g>
+          <g class="flow-node"><circle class="dot" cx="150" cy="90" r="14" fill="#8f3630"/><text class="n" x="150" y="94">2</text><text class="l" x="150" y="58">Step screen</text></g>
           <g class="flow-node"><circle class="dot" cx="270" cy="170" r="14" fill="#a04c3f"/><text class="n" x="270" y="174">3</text><text class="l" x="270" y="212">Oil &amp; grease</text></g>
           <g class="flow-node"><circle class="dot" cx="400" cy="90" r="14" fill="#b56850"/><text class="n" x="400" y="94">4</text><text class="l" x="400" y="58">Equalization</text></g>
           <g class="flow-node"><circle class="dot" cx="520" cy="170" r="14" fill="#cf8a6f"/><text class="n" x="520" y="174">5</text><text class="l" x="520" y="212">Anoxic</text></g>
@@ -1938,6 +2291,97 @@ footer.site .f-bot{
     </div>
   </section>
 
+  <!-- panel load list -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Control panel load list</div>
+        <h2 class="h-sect" data-reveal style="--d:1">Every drive the control panel has to run</h2>
+        <p class="lede" data-reveal style="--d:2">The STP main control panel is an MCC cum PLC panel on a 415 V ±10 %, 3-phase, 4-wire, 50 Hz supply, with 230 V AC / 24 V DC control. Below is every motor and valve it feeds, with duty and standby split out so the operating load is what the plant actually draws.</p>
+      </div>
+
+      <div class="metrics" data-reveal>
+        <div class="stat"><div class="k">298.75 HP</div><div class="v">Connected load</div></div>
+        <div class="stat"><div class="k">222.79 kW</div><div class="v">Connected load</div></div>
+        <div class="stat"><div class="k">171.25 HP</div><div class="v">Operating load — working drives only</div></div>
+        <div class="stat"><div class="k">127.71 kW</div><div class="v">Operating load — working drives only</div></div>
+      </div>
+
+      <div class="table-scroll" style="margin-top:2rem;--d:1" data-reveal>
+        <table class="dtable load">
+          <caption class="mono" style="text-align:left;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);padding-bottom:.8rem;">A. Power outputs — motor &amp; electrical loads · Project Id AES/KVGH/STP/2026-27/111 · R0 · 25 Sep 2026</caption>
+          <thead>
+            <tr><th scope="col" class="num">No.</th><th scope="col">Equipment</th><th scope="col" class="num">Rating</th><th scope="col">Supply</th><th scope="col">Duty</th><th scope="col" class="num">Operating kW</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-l="No." class="num">1</td><td data-l="Equipment">Feed pump (working) — submersible</td><td data-l="Rating" class="num">7.50 HP · 5.59 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">5.59</td></tr>
+            <tr><td data-l="No." class="num">2</td><td data-l="Equipment">Feed pump (standby) — submersible</td><td data-l="Rating" class="num">7.50 HP · 5.59 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">3</td><td data-l="Equipment">Permeate pump 1 (working)</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">3.73</td></tr>
+            <tr><td data-l="No." class="num">4</td><td data-l="Equipment">Permeate pump 1 (standby)</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">5</td><td data-l="Equipment">Motorised valve — MV1</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr><td data-l="No." class="num">6</td><td data-l="Equipment">Permeate pump 2 (working)</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">3.73</td></tr>
+            <tr><td data-l="No." class="num">7</td><td data-l="Equipment">Permeate pump 2 (standby)</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">8</td><td data-l="Equipment">Motorised valve — MV2</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr><td data-l="No." class="num">9</td><td data-l="Equipment">Backwash pump</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">3.73</td></tr>
+            <tr><td data-l="No." class="num">10</td><td data-l="Equipment">Motorised valve — MV3</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr><td data-l="No." class="num">11</td><td data-l="Equipment">Air blower — aeration (working)</td><td data-l="Rating" class="num">60.00 HP · 44.74 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">44.74</td></tr>
+            <tr><td data-l="No." class="num">12</td><td data-l="Equipment">Air blower — aeration (standby)</td><td data-l="Rating" class="num">60.00 HP · 44.74 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">13</td><td data-l="Equipment">Air blower — MBR (working)</td><td data-l="Rating" class="num">50.00 HP · 37.29 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">37.29</td></tr>
+            <tr><td data-l="No." class="num">14</td><td data-l="Equipment">Air blower — MBR (standby)</td><td data-l="Rating" class="num">50.00 HP · 37.29 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">15</td><td data-l="Equipment">Dosing pump</td><td data-l="Rating" class="num">0.50 HP · 0.37 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.37</td></tr>
+            <tr><td data-l="No." class="num">16</td><td data-l="Equipment">RAS pump — submersible</td><td data-l="Rating" class="num">7.50 HP · 5.59 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">5.59</td></tr>
+            <tr><td data-l="No." class="num">17</td><td data-l="Equipment">Sludge pump — aeration tank, submersible</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">3.73</td></tr>
+            <tr><td data-l="No." class="num">18</td><td data-l="Equipment">Treated water pump</td><td data-l="Rating" class="num">7.50 HP · 5.59 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">5.59</td></tr>
+            <tr><td data-l="No." class="num">19</td><td data-l="Equipment">Extra pump — 1</td><td data-l="Rating" class="num">3.00 HP · 2.24 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">2.24</td></tr>
+            <tr><td data-l="No." class="num">20</td><td data-l="Equipment">Extra pump — 2</td><td data-l="Rating" class="num">5.00 HP · 3.73 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">3.73</td></tr>
+            <tr><td data-l="No." class="num">21</td><td data-l="Equipment">Extra pump — 3</td><td data-l="Rating" class="num">7.50 HP · 5.59 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">5.59</td></tr>
+            <tr><td data-l="No." class="num">22</td><td data-l="Equipment">Mechanical screen</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">1.49</td></tr>
+            <tr class="total"><td data-l="Drives" class="num">22</td><td data-l="Total">Total connected / operating</td><td data-l="Connected" class="num">298.75 HP · 222.79 kW</td><td></td><td></td><td data-l="Operating" class="num">127.71 kW</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:2.4rem">
+        <div class="card" data-reveal style="--d:0">
+          <div class="eyebrow">B. Field instruments</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>Vacuum transmitter — 4–20 mA</li>
+            <li>Pressure transmitter — 4–20 mA</li>
+            <li>pH meter — RS-485 Modbus</li>
+            <li>EMF flow meter, inlet — RS-485 Modbus</li>
+            <li>EMF flow meter, outlet — RS-485 Modbus</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">C. Digital inputs</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>LS1, LS2 — float switches on the feed pumps</li>
+            <li>LS3, LS4 — float switches on the permeate pumps</li>
+            <li>LS5 — float switch on the backwash pump</li>
+            <li>LS6 — float switch on the treated water pump</li>
+            <li>All potential-free NO/NC at 24 V DC</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:2">
+          <div class="eyebrow">D. Panel accessories</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>LED panel lamp with door limit switch</li>
+            <li>Digital voltmeter with selector switch</li>
+            <li>Digital energy meter, RS-485</li>
+            <li>2 × 3-pin 6/16 A switch sockets</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.8rem" data-reveal>The load list carries larger blower motors than the August offer — <b>60 HP for aeration and 50 HP for MBR scouring</b>, against 40 hp in the equipment schedule on the Commercial sheet — and a 2 HP mechanical screen. Its own note 3 applies: motor ratings are to be verified against final equipment datasheets before panel manufacture.</p>
+
+      <div class="btn-row" data-reveal>
+        <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-Panel-Load-List.pdf" download>Download the load list PDF
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <nav class="pagenav" aria-label="Page navigation">
     <a class="prev" href="#/vision"><span class="pn-k">Previous — 01</span><span class="pn-t">Vision</span></a>
     <a class="next" href="#/programme"><span class="pn-k">Next — 03</span><span class="pn-t">Programme</span></a>
@@ -1947,12 +2391,26 @@ footer.site .f-bot{
 <!-- ══════════════════════════════════════════════════════════
      PAGE 03 — PROGRAMME
      ══════════════════════════════════════════════════════════ -->
-<article class="page" id="page-programme" data-title="Programme">
+<article class="page" id="page-programme" data-title="1.5 MLD · Programme">
+
+  <div class="projbar">
+    <div class="wrap">
+      <div class="projbar__id"><span class="projbar__tag">P1</span><span><span class="full">Project 01 · </span><b>K.V.G. Medical College &amp; Hospital</b> · 1.5 MLD</span></div>
+      <nav class="projbar__tabs" aria-label="1.5 MLD project sheets">
+        <a href="#/vision">01 Vision</a>
+        <a href="#/engineering">02 Engineering</a>
+        <a href="#/programme">03 Programme</a>
+        <a href="#/commercial">04 Commercial</a>
+        <a href="#/documents?p=hospital">Documents</a>
+        <a class="sw" href="#/ayurveda">200 KLD Ayurveda →</a>
+      </nav>
+    </div>
+  </div>
 
   <header class="pagehead">
     <div class="hero__bg" aria-hidden="true"><span></span></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Sheet 03 · From order to commissioning</div>
+      <div class="eyebrow">Project 01 · Sheet 03 · From order to commissioning</div>
       <h1>What the next four and a half months actually look like</h1>
       <p>Civil works run in parallel with off-site engineering, procurement and fabrication. Installation and commissioning follow civil handover — an overall duration of 18 weeks from Purchase Order, of which the civil scope itself spans the first three months.</p>
       <div class="pagehead-meta">
@@ -2144,12 +2602,26 @@ footer.site .f-bot{
 <!-- ══════════════════════════════════════════════════════════
      PAGE 04 — COMMERCIAL
      ══════════════════════════════════════════════════════════ -->
-<article class="page" id="page-commercial" data-title="Commercial">
+<article class="page" id="page-commercial" data-title="1.5 MLD · Commercial">
+
+  <div class="projbar">
+    <div class="wrap">
+      <div class="projbar__id"><span class="projbar__tag">P1</span><span><span class="full">Project 01 · </span><b>K.V.G. Medical College &amp; Hospital</b> · 1.5 MLD</span></div>
+      <nav class="projbar__tabs" aria-label="1.5 MLD project sheets">
+        <a href="#/vision">01 Vision</a>
+        <a href="#/engineering">02 Engineering</a>
+        <a href="#/programme">03 Programme</a>
+        <a href="#/commercial">04 Commercial</a>
+        <a href="#/documents?p=hospital">Documents</a>
+        <a class="sw" href="#/ayurveda">200 KLD Ayurveda →</a>
+      </nav>
+    </div>
+  </div>
 
   <header class="pagehead">
     <div class="hero__bg" aria-hidden="true"><span></span></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Sheet 04 · Techno-commercial offer</div>
+      <div class="eyebrow">Project 01 · Sheet 04 · Techno-commercial offer</div>
       <h1>The price, and precisely what it buys</h1>
       <p>One line item, supply through commissioning, with every major piece of equipment named and specified below. Civil works remain in client scope.</p>
       <div class="pagehead-meta">
@@ -2223,6 +2695,7 @@ footer.site .f-bot{
         <div class="eyebrow" data-reveal>Electromechanical details</div>
         <h2 class="h-sect" data-reveal style="--d:1">Equipment schedule — 1,500 KLD STP</h2>
         <p class="lede" data-reveal style="--d:2">Every major item, with duty, material of construction and make. Open a section to see the specification.</p>
+        <p class="note" data-reveal style="--d:3;margin-top:1rem">Schedule as offered on 2 August 2026. Since then the revised process flow diagram places a mechanised <b>step screen at the inlet</b> instead of the rotary drum screen, and the September panel load list carries larger blower motors. Both are worth reconciling with this schedule before the PO.</p>
       </div>
 
       <div class="acc" data-acc data-reveal>
@@ -2434,7 +2907,317 @@ footer.site .f-bot{
 
   <nav class="pagenav" aria-label="Page navigation">
     <a class="prev" href="#/programme"><span class="pn-k">Previous — 03</span><span class="pn-t">Programme</span></a>
-    <a class="next" href="#/record"><span class="pn-k">Next — 05</span><span class="pn-t">Track record</span></a>
+    <a class="next" href="#/ayurveda"><span class="pn-k">Next — Project 02 · 200 KLD</span><span class="pn-t">K.V.G. Ayurveda Medical College</span></a>
+  </nav>
+</article>
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJECT 02 — K.V.G. AYURVEDA MEDICAL COLLEGE · 200 KLD
+     ══════════════════════════════════════════════════════════ -->
+<article class="page" id="page-ayurveda" data-title="200 KLD · K.V.G. Ayurveda Medical College">
+
+  <div class="projbar projbar--ay">
+    <div class="wrap">
+      <div class="projbar__id"><span class="projbar__tag">P2</span><span><span class="full">Project 02 · </span><b>K.V.G. Ayurveda Medical College</b> · 200 KLD</span></div>
+      <nav class="projbar__tabs" aria-label="200 KLD project sections">
+        <button type="button" data-jump="ay-process">Process</button>
+        <button type="button" data-jump="ay-aeration">Aeration tank</button>
+        <button type="button" data-jump="ay-mbr">MBR tank</button>
+        <button type="button" data-jump="ay-load">Load list</button>
+        <a href="#/documents?p=ayurveda">Documents</a>
+        <a class="sw" href="#/vision">1.5 MLD Hospital →</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="pagehead pagehead--ay">
+    <div class="hero__bg" aria-hidden="true"><span></span></div>
+    <div class="wrap hero-anim">
+      <div class="eyebrow">Project 02 · K.V.G. Ayurveda Medical College, Sullia</div>
+      <h1>A 200 KLD membrane plant, sized to the campus and drawn around the site</h1>
+      <p>The same ESTAPRO™ MBR technology as the 1.5 MLD hospital plant, in a compact train: screening, oil and grease removal, collection, aeration and a single membrane tank, with permeate pumped to a treated water tank. Below are the process flow diagram, both tank drawings and the control panel load list issued for this plant.</p>
+      <div class="pagehead-meta">
+        <span class="pill">Project AES/KVGA/STP/2026-27/112</span>
+        <span class="pill">Drg AES/KVG/STP/PLN/SEC-01</span>
+        <span class="pill">28–29 Sep 2026</span>
+        <span class="pill">For approval</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- design basis -->
+  <section class="band ay-accent">
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Design basis</div>
+        <h2 class="h-sect" data-reveal style="--d:1">What the plant is drawn to handle</h2>
+      </div>
+
+      <div class="metrics" data-reveal>
+        <div class="stat"><div class="k">200 m³<span style="font-size:.5em">/day</span></div><div class="v">Design flow — 200 KLD of campus sewage</div></div>
+        <div class="stat"><div class="k">≈ 8.3 m³<span style="font-size:.5em">/hr</span></div><div class="v">Average hourly flow over a 24-hour day</div></div>
+        <div class="stat"><div class="k">4.0 × 2.0 m</div><div class="v">MBR tank in plan, 3.0 m deep, two membrane cassettes</div></div>
+        <div class="stat"><div class="k">21.83 kW</div><div class="v">Operating load at the control panel, working drives only</div></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:2.4rem">
+        <div class="card" data-reveal style="--d:0">
+          <div class="eyebrow">Issued for this plant</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>Process flow diagram — 200 KLD sewage treatment plant</li>
+            <li>Aeration tank plan with sections A-A and B-B, dated 28 Sep 2026</li>
+            <li>MBR tank plan with section A-A, dated 29 Sep 2026</li>
+            <li>Control panel load list, R0, dated 25 Sep 2026</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">Not yet in this set</div>
+          <p class="note" style="margin-top:1rem">The techno-commercial offer, treated-water guarantee and programme on the hospital sheets cover the <b>1.5 MLD plant only</b>. Neither drawing for the 200 KLD plant has a revision entered yet, and both carry general note 4: the plan may change as per site conditions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- process -->
+  <section class="band band--paper2 ay-accent" id="ay-process" data-jumpto>
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>The process</div>
+        <h2 class="h-sect" data-reveal style="--d:1">From static screen to treated water tank</h2>
+        <p class="lede" data-reveal style="--d:2">Raw sewage enters through a static screen that holds back coarse solids, then passes through an oil &amp; grease chamber where a skimmer lifts floating oil and grease off the surface. It collects in an aerated collection tank that evens out the daily peaks, then flows into the aeration tank, where aerobic micro-organisms break down the organic load.</p>
+        <p class="lede" data-reveal style="--d:3;margin-top:1rem">The mixed liquor moves on into the MBR tank. Submerged membrane modules hold back biomass and suspended solids, while permeate pumps — one working, one standby — draw clean water through the membranes, and a backwash system cleans them periodically. After disinfectant dosing the treated water is stored in the treated water tank. Excess sludge is drawn from the MBR tank to a sludge drying bed.</p>
+      </div>
+
+      <div class="figure" data-reveal="scale">
+        <div class="figure__media" data-zoom="assets/ay-process-flow.webp" data-cap="K.V.G. Ayurveda Medical College — 200 KLD STP, Process Flow Diagram" tabindex="0" role="button" aria-label="Open the 200 KLD process flow diagram full screen">
+          <img src="assets/ay-process-flow.webp" alt="Process flow diagram — static screen, oil and grease chamber, collection tank, aeration tank, MBR tank, permeate pumps, backwash system, disinfectant dosing, treated water tank, sludge drying bed" loading="lazy" width="1900" height="1343">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap">
+          <span><b>Process Flow Diagram</b> — Static screen → Oil &amp; grease → Collection → Aeration → MBR → Permeate pumps → Dosing → Treated water</span>
+          <span>Side stream: MBR tank → Sludge drying bed</span>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <h3 class="h-sub" data-reveal>Where the water goes, tank by tank</h3>
+      <p class="lede" data-reveal style="--d:1">A shorter train than the hospital plant. There is no anoxic stage and no separate equalization tank. The collection tank does the buffering, and the aeration tank feeds the membrane tank directly.</p>
+
+      <div class="flow-wrap" data-reveal style="--d:2;margin-top:2.4rem">
+        <svg class="flow-svg" viewBox="0 0 1180 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="200 KLD process train from inlet through eight stages to the treated water tank, with sludge drying bed and backwash side streams">
+          <defs>
+            <linearGradient id="flowGradAy" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#912411"/>
+              <stop offset="45%" stop-color="#cf8a6f"/>
+              <stop offset="100%" stop-color="#026c7a"/>
+            </linearGradient>
+          </defs>
+          <path class="branch" d="M660,90 C660,150 620,205 560,225"/>
+          <path class="branch" d="M800,170 C800,118 812,70 836,48"/>
+          <path id="flowpathAy" class="flowpath" stroke="url(#flowGradAy)" d="M40,170 C95,170 95,90 150,90 C205,90 205,170 270,170 C335,170 335,90 400,90 C460,90 460,170 520,170 C590,170 590,90 660,90 C730,90 730,170 800,170 C865,170 865,90 930,90 C995,90 995,150 1060,150"/>
+          <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="0s"><mpath href="#flowpathAy"/></animateMotion></circle>
+          <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="3s"><mpath href="#flowpathAy"/></animateMotion></circle>
+          <circle class="flow-dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" begin="6s"><mpath href="#flowpathAy"/></animateMotion></circle>
+          <g class="flow-node"><circle class="dot" cx="40" cy="170" r="14" fill="#912411"/><text class="n" x="40" y="174">1</text><text class="l" x="40" y="212">Inlet</text></g>
+          <g class="flow-node"><circle class="dot" cx="150" cy="90" r="14" fill="#8f3630"/><text class="n" x="150" y="94">2</text><text class="l" x="150" y="58">Static screen</text></g>
+          <g class="flow-node"><circle class="dot" cx="270" cy="170" r="14" fill="#a04c3f"/><text class="n" x="270" y="174">3</text><text class="l" x="270" y="212">Oil &amp; grease</text></g>
+          <g class="flow-node"><circle class="dot" cx="400" cy="90" r="14" fill="#b56850"/><text class="n" x="400" y="94">4</text><text class="l" x="400" y="58">Collection tank</text></g>
+          <g class="flow-node"><circle class="dot" cx="520" cy="170" r="14" fill="#9aab8e"/><text class="n" x="520" y="174">5</text><text class="l" x="520" y="212">Aeration tank</text></g>
+          <g class="flow-node"><circle class="dot" cx="660" cy="90" r="14" fill="#4f95a1"/><text class="n" x="660" y="94">6</text><text class="l" x="660" y="58">MBR tank</text></g>
+          <g class="flow-node"><circle class="dot" cx="800" cy="170" r="14" fill="#2f8592"/><text class="n" x="800" y="174">7</text><text class="l" x="800" y="212">Permeate pumps</text></g>
+          <g class="flow-node"><circle class="dot" cx="930" cy="90" r="14" fill="#026c7a"/><text class="n" x="930" y="94">8</text><text class="l" x="930" y="58">Disinfection</text></g>
+          <g class="flow-node"><circle class="dot" cx="1060" cy="150" r="14" fill="#07434b"/><text class="n" x="1060" y="154">9</text><text class="l" x="1060" y="188">Treated water tank</text></g>
+          <g class="flow-node"><circle class="dot" cx="560" cy="225" r="11" fill="#6f1b11"/><text class="n" x="560" y="229" font-size="10">S</text><text class="l" x="560" y="250" font-size="12">Sludge drying bed</text></g>
+          <g class="flow-node"><circle class="dot" cx="845" cy="40" r="11" fill="#8a8177"/><text class="n" x="845" y="44" font-size="10">B</text><text class="l" x="845" y="22" font-size="12">Backwash system</text></g>
+        </svg>
+      </div>
+
+      <div class="flow-legend" data-reveal>
+        <span><span class="lg-sw"></span> Main treatment train — inlet to treated water tank</span>
+        <span><span class="lg-sw dashed"></span> Side streams — sludge and membrane backwash</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- aeration tank GA -->
+  <section class="band ay-accent" id="ay-aeration" data-jumpto>
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Drawing AES/KVG/STP/PLN/SEC-01 · 28 Sep 2026</div>
+        <h2 class="h-sect" data-reveal style="--d:1">The aeration tank, planned around the existing footings</h2>
+        <p class="lede" data-reveal style="--d:2">The plan and two cross sections fix the aeration tank at 9.52 m by 4.35 m overall, with 0.20 m walls. The hatched blocks are existing footings that already sit inside this footprint, and the tank is drawn around them. Tap the sheet to zoom into any dimension.</p>
+      </div>
+
+      <div class="figure" data-reveal="scale">
+        <div class="figure__media" data-zoom="assets/ay-aeration-ga.webp" data-cap="200 KLD STP — Aeration tank plan, sections A-A and B-B · 28.09.2026" tabindex="0" role="button" aria-label="Open the aeration tank drawing full screen">
+          <img src="assets/ay-aeration-ga.webp" alt="200 KLD STP aeration tank plan with cross sections A-A and B-B for K.V.G. Ayurveda Medical College, Sullia, showing existing footings inside the tank" loading="lazy" width="2600" height="1838">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap">
+          <span><b>Drg No. AES/KVG/STP/PLN/SEC-01</b> — 200 KLD STP plan, aeration tank</span>
+          <span>Dated 28.09.2026 · Scale NTS · Drawn / Designed: PRP · <a href="docs/KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf" download style="color:var(--teal-lt)">Sheet PDF ↓</a></span>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <h3 class="h-sub" data-reveal>Key dimensions, as drawn</h3>
+      <div class="table-scroll" data-reveal style="--d:1">
+        <table class="dtable">
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Where on the drawing</th><th scope="col" class="num">Dimension</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-l="Item">Overall plan size</td><td data-l="Where">Plan</td><td data-l="Dimension" class="num">9.52 × 4.35 m</td></tr>
+            <tr><td data-l="Item">Wall thickness</td><td data-l="Where">Plan, section A-A</td><td data-l="Dimension" class="num">0.20 m</td></tr>
+            <tr><td data-l="Item">Internal length, in bays</td><td data-l="Where">Plan, section A-A</td><td data-l="Dimension" class="num">1.22 + 2.05 + 2.58 + 1.60 + 1.67 m</td></tr>
+            <tr><td data-l="Item">Overall depth</td><td data-l="Where">Sections A-A, B-B</td><td data-l="Dimension" class="num">4.35 m</td></tr>
+            <tr><td data-l="Item">Liquid depth</td><td data-l="Where">Section B-B</td><td data-l="Dimension" class="num">3.65 m</td></tr>
+            <tr><td data-l="Item">Free board</td><td data-l="Where">Sections A-A, B-B</td><td data-l="Dimension" class="num">0.30 m</td></tr>
+            <tr><td data-l="Item">Existing footings inside the tank</td><td data-l="Where">Plan, hatched</td><td data-l="Dimension" class="num">3 nos., 1.82 m high</td></tr>
+            <tr><td data-l="Item">Access manholes</td><td data-l="Where">Plan, on the A-A line</td><td data-l="Dimension" class="num">2 × 0.6 × 0.6 m</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:1.4rem" data-reveal>The three footings project 1.98 m, 1.82 m and 1.98 m into the tank in plan and rise 1.82 m from the floor, so they take up part of the lower water volume. Diffuser layout will need to work around them. The drawing has no revision entered yet and is issued <b>for approval</b>.</p>
+    </div>
+  </section>
+
+  <!-- MBR tank GA -->
+  <section class="band band--ay-dark" id="ay-mbr" data-jumpto>
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Drawing AES/KVG/STP/PLN/SEC-01 · 29 Sep 2026</div>
+        <h2 class="h-sect" data-reveal style="--d:1">The MBR tank: two membrane cassettes in 4 × 2 × 3 metres</h2>
+        <p class="lede" data-reveal style="--d:2">The membrane tank is 4.0 m long, 2.0 m wide and 3.0 m deep, with 2.70 m below the free board line and 0.30 m of free board. It holds two membrane cassettes side by side, each 1,380 mm by 1,700 mm in plan, with 0.30 m to each wall and 0.60 m between them. Each cassette has an elbow for the air connection and a coupler for the water connection.</p>
+      </div>
+
+      <div class="figure" style="background:#0f2c31;border-color:#1b4248" data-reveal="scale">
+        <div class="figure__media" data-zoom="assets/ay-mbr-ga.webp" data-cap="200 KLD STP — MBR tank plan and section A-A · 29.09.2026" tabindex="0" role="button" aria-label="Open the MBR tank drawing full screen">
+          <img src="assets/ay-mbr-ga.webp" alt="200 KLD STP MBR tank plan and cross section, 4.0 by 2.0 by 3.0 metres, with two membrane cassettes, for K.V.G. Ayurveda Medical College, Sullia" loading="lazy" width="2600" height="1838">
+          <span class="figure__zoom">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.7" y2="16.7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Zoom
+          </span>
+        </div>
+        <div class="figure__cap" style="background:#0b2226;border-top-color:#1b4248;color:#8fb0b5">
+          <span><b style="color:var(--paper)">Drg No. AES/KVG/STP/PLN/SEC-01</b> — 200 KLD STP, MBR tank plan</span>
+          <span>Dated 29.09.2026 · Scale NTS · <a href="docs/KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf" download style="color:var(--teal-pale)">Sheet PDF ↓</a></span>
+        </div>
+      </div>
+
+      <div class="mbr-viz" style="margin-top:2.4rem" data-reveal="scale" role="img" aria-label="Animation of the membrane tank: mixed liquor and air on the feed side, clean permeate crossing the membrane to the right">
+        <div class="mbr-labels">
+          <div class="f">Feed side — mixed liquor from the aeration tank</div>
+          <div class="p">Permeate — to the treated water tank</div>
+        </div>
+        <div class="feed-zone"></div>
+        <div class="perm-zone"></div>
+        <div class="membrane"></div>
+      </div>
+
+      <div class="grid grid-4" style="margin-top:2.4rem">
+        <div class="card stat" data-reveal style="--d:0"><div class="k">4.0 × 2.0 m</div><div class="v">MBR tank in plan, 3.0 m overall depth</div></div>
+        <div class="card stat" data-reveal style="--d:1"><div class="k">2.70 m</div><div class="v">Depth below the free board line, with 0.30 m free board above</div></div>
+        <div class="card stat" data-reveal style="--d:2"><div class="k">2 cassettes</div><div class="v">1,380 × 1,700 mm each in plan, 0.60 m apart</div></div>
+        <div class="card stat" data-reveal style="--d:3"><div class="k">15 HP</div><div class="v">Air blower, one working and one standby, per the panel load list</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- panel load list -->
+  <section class="band ay-accent" id="ay-load" data-jumpto>
+    <div class="wrap">
+      <div class="sect-head head-block">
+        <div class="eyebrow" data-reveal>Control panel load list</div>
+        <h2 class="h-sect" data-reveal style="--d:1">Every drive the control panel has to run</h2>
+        <p class="lede" data-reveal style="--d:2">An STP main control panel, MCC cum PLC, on a 415 V ±10 %, 3-phase, 4-wire, 50 Hz supply with 230 V AC / 24 V DC control. Sixteen drives, with duty and standby split out so the operating load is what the plant actually draws.</p>
+      </div>
+
+      <div class="metrics" data-reveal>
+        <div class="stat"><div class="k">51.25 HP</div><div class="v">Connected load</div></div>
+        <div class="stat"><div class="k">38.24 kW</div><div class="v">Connected load</div></div>
+        <div class="stat"><div class="k">29.25 HP</div><div class="v">Operating load — working drives only</div></div>
+        <div class="stat"><div class="k">21.83 kW</div><div class="v">Operating load — working drives only</div></div>
+      </div>
+
+      <div class="table-scroll" style="margin-top:2rem;--d:1" data-reveal>
+        <table class="dtable load">
+          <caption class="mono" style="text-align:left;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);padding-bottom:.8rem;">A. Power outputs — motor &amp; electrical loads · Project Id AES/KVGA/STP/2026-27/112 · R0 · 25 Sep 2026</caption>
+          <thead>
+            <tr><th scope="col" class="num">No.</th><th scope="col">Equipment</th><th scope="col" class="num">Rating</th><th scope="col">Supply</th><th scope="col">Duty</th><th scope="col" class="num">Operating kW</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-l="No." class="num">1</td><td data-l="Equipment">Feed pump (working)</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">1.49</td></tr>
+            <tr><td data-l="No." class="num">2</td><td data-l="Equipment">Feed pump (standby)</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">3</td><td data-l="Equipment">Permeate pump (working)</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">1.49</td></tr>
+            <tr><td data-l="No." class="num">4</td><td data-l="Equipment">Permeate pump (standby)</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">5</td><td data-l="Equipment">Backwash pump</td><td data-l="Rating" class="num">1.00 HP · 0.75 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.75</td></tr>
+            <tr><td data-l="No." class="num">6</td><td data-l="Equipment">Solenoid valve — SV1</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr><td data-l="No." class="num">7</td><td data-l="Equipment">Solenoid valve — SV2</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr><td data-l="No." class="num">8</td><td data-l="Equipment">Air blower (working)</td><td data-l="Rating" class="num">15.00 HP · 11.19 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">11.19</td></tr>
+            <tr><td data-l="No." class="num">9</td><td data-l="Equipment">Air blower (standby)</td><td data-l="Rating" class="num">15.00 HP · 11.19 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">10</td><td data-l="Equipment">RAS pump — submersible</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">1.49</td></tr>
+            <tr><td data-l="No." class="num">11</td><td data-l="Equipment">Treated water pump (working)</td><td data-l="Rating" class="num">3.00 HP · 2.24 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">2.24</td></tr>
+            <tr><td data-l="No." class="num">12</td><td data-l="Equipment">Treated water pump (standby)</td><td data-l="Rating" class="num">3.00 HP · 2.24 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty s">Standby</span></td><td data-l="Operating" class="num">–</td></tr>
+            <tr><td data-l="No." class="num">13</td><td data-l="Equipment">Extra pump — 1</td><td data-l="Rating" class="num">1.00 HP · 0.75 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.75</td></tr>
+            <tr><td data-l="No." class="num">14</td><td data-l="Equipment">Extra pump — 2</td><td data-l="Rating" class="num">2.00 HP · 1.49 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">1.49</td></tr>
+            <tr><td data-l="No." class="num">15</td><td data-l="Equipment">Mechanical screen</td><td data-l="Rating" class="num">0.50 HP · 0.37 kW</td><td data-l="Supply">415 V, 3 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.37</td></tr>
+            <tr><td data-l="No." class="num">16</td><td data-l="Equipment">Dosing pump</td><td data-l="Rating" class="num">0.25 HP · 0.19 kW</td><td data-l="Supply">230 V, 1 ph</td><td data-l="Duty"><span class="duty w">Working</span></td><td data-l="Operating" class="num">0.19</td></tr>
+            <tr class="total"><td data-l="Drives" class="num">16</td><td data-l="Total">Total connected / operating</td><td data-l="Connected" class="num">51.25 HP · 38.24 kW</td><td></td><td></td><td data-l="Operating" class="num">21.83 kW</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:2.4rem">
+        <div class="card" data-reveal style="--d:0">
+          <div class="eyebrow">B. Field instruments</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>Vacuum transmitter — 4–20 mA, 24 V DC</li>
+            <li>Pressure transmitter — 4–20 mA, 24 V DC</li>
+            <li>pH meter — 4–20 mA</li>
+            <li>EMF flow meter — RS-485 Modbus</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:1">
+          <div class="eyebrow">C. Digital inputs</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>Float level switches LS1 to LS6</li>
+            <li>Potential-free NO/NC contacts</li>
+            <li>24 V DC signal supply</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal style="--d:2">
+          <div class="eyebrow">D. Panel accessories</div>
+          <ul class="checks" style="margin-top:1rem">
+            <li>LED panel lamp with door limit switch</li>
+            <li>Digital voltmeter with selector switch</li>
+            <li>Digital energy meter, RS-485</li>
+            <li>2 × 3-pin 6/16 A switch sockets</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.8rem" data-reveal>Conversion at 1 HP = 0.7457 kW. Operating load counts only drives marked <b>Working</b>; standby drives are excluded. Motor ratings are to be verified against final equipment datasheets before panel manufacture.</p>
+
+      <div class="btn-row" data-reveal>
+        <a class="btn btn--teal" href="#/documents?p=ayurveda">All 200 KLD documents
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+        <a class="btn btn--ghost" href="#/vision">See the 1.5 MLD hospital plant</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="pagenav" aria-label="Page navigation">
+    <a class="prev" href="#/commercial"><span class="pn-k">Previous — Project 01 · 1.5 MLD</span><span class="pn-t">Commercial</span></a>
+    <a class="next" href="#/record"><span class="pn-k">Next — both projects</span><span class="pn-t">Track record</span></a>
   </nav>
 </article>
 
@@ -2446,7 +3229,7 @@ footer.site .f-bot{
   <header class="pagehead">
     <div class="hero__bg" aria-hidden="true"><span></span></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Sheet 05 · Why Aapaavani</div>
+      <div class="eyebrow">Both projects · Why Aapaavani</div>
       <h1>What we have actually built, not what we say we can build</h1>
       <p>A clean-tech company specialising in smart and efficient wastewater treatment, founded by environmental engineers and researchers. We address persistent challenges in wastewater treatment with end-to-end solutions, integrating AI/ML algorithms and intelligent process control — and we upgrade inefficient or failed systems into smart, automated facilities using proven technologies such as membrane bioreactors.</p>
       <div class="pagehead-meta">
@@ -2472,7 +3255,7 @@ footer.site .f-bot{
         <div class="stat"><div class="k" data-count="100" data-suffix="+">0+</div><div class="v">Projects completed successfully</div></div>
       </div>
 
-      <p class="note" style="margin-top:1.6rem" data-reveal>At 1.5 MLD, the KVG plant would be the second-largest MBR sewage treatment plant we have built — behind only the 1.6 MLD municipal plant at Karwar City Municipal Corporation — and the largest we have built for an educational or healthcare institution.</p>
+      <p class="note" style="margin-top:1.6rem" data-reveal>At 1.5 MLD, the KVG plant would be the second-largest MBR sewage treatment plant we have built — behind only the 1.6 MLD municipal plant at Karwar City Municipal Corporation — and the largest we have built for an educational or healthcare institution. The 200 KLD plant at K.V.G. Ayurveda Medical College sits alongside the 125 KLD hospital and 250 KLD institutional plants listed below.</p>
 
       <div class="hr"></div>
 
@@ -2811,8 +3594,8 @@ footer.site .f-bot{
   </section>
 
   <nav class="pagenav" aria-label="Page navigation">
-    <a class="prev" href="#/commercial"><span class="pn-k">Previous — 04</span><span class="pn-t">Commercial</span></a>
-    <a class="next" href="#/documents"><span class="pn-k">Next — 06</span><span class="pn-t">Documents</span></a>
+    <a class="prev" href="#/ayurveda"><span class="pn-k">Previous — Project 02 · 200 KLD</span><span class="pn-t">K.V.G. Ayurveda Medical College</span></a>
+    <a class="next" href="#/documents"><span class="pn-k">Next — both projects</span><span class="pn-t">Documents</span></a>
   </nav>
 </article>
 
@@ -2824,13 +3607,13 @@ footer.site .f-bot{
   <header class="pagehead">
     <div class="hero__bg" aria-hidden="true"><span></span></div>
     <div class="wrap hero-anim">
-      <div class="eyebrow">Sheet 06 · Source documents</div>
-      <h1>Everything on this site, in its original signed form</h1>
-      <p>Every drawing, table and clause presented across these sheets is drawn from the four documents below. Read them here in the browser, or download the originals.</p>
+      <div class="eyebrow">Both projects · Source documents</div>
+      <h1>Everything on this site, in its original form</h1>
+      <p>Every drawing, table and clause across both projects is drawn from the documents below, grouped by campus. Read them here in the browser, or download the originals.</p>
       <div class="pagehead-meta">
-        <span class="pill">4 documents</span>
-        <span class="pill">25 pages total</span>
-        <span class="pill">PDF</span>
+        <span class="pill">2 projects</span>
+        <span class="pill">11 documents</span>
+        <span class="pill">PDF &amp; PNG</span>
       </div>
     </div>
   </header>
@@ -2838,138 +3621,316 @@ footer.site .f-bot{
   <section class="band">
     <div class="wrap">
 
-      <div class="doc" data-reveal="scale">
-        <div class="doc__cover">
-          <img src="assets/doc-quote-cover.webp" alt="Cover page of the techno-commercial offer" loading="lazy" width="760" height="1075">
+      <div class="seg" role="group" aria-label="Filter documents by project" data-reveal>
+        <button type="button" data-filter="all" aria-pressed="true">Both projects</button>
+        <button type="button" data-filter="hospital" aria-pressed="false">1.5 MLD · Hospital</button>
+        <button type="button" data-filter="ayurveda" aria-pressed="false">200 KLD · Ayurveda</button>
+      </div>
+
+      <!-- ─────────── PROJECT 01 ─────────── -->
+      <div class="doc-group" data-group="hospital">
+        <div class="doc-group__h">
+          <div>
+            <div class="eyebrow">Project 01 · 1.5 MLD · AES/KVGH/STP/2026-27/111</div>
+            <h2>K.V.G. Medical College &amp; Hospital</h2>
+          </div>
+          <a class="btn btn--ghost btn--sm" href="#/vision">Open the project sheets</a>
         </div>
-        <div class="doc__body">
-          <div class="eyebrow">Techno-commercial offer</div>
-          <h3>K.V.G. Medical College &amp; Hospital — 1.5 MLD MBR Quote</h3>
-          <p>The complete offer: introduction and team, prominent clients, design parameters, brief process description with the process flow diagram, the commercial offer and payment terms, the full electromechanical equipment schedule, detailed scope of work for supplier and client, other terms and conditions, and recent installations.</p>
-          <div class="doc__meta">
-            <span class="pill">15 pages</span>
-            <span class="pill">5.1 MB</span>
-            <span class="pill">Ref QT/STP/2026-27/76</span>
-            <span class="pill">2 August 2026</span>
+
+        <div class="doc" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-quote-cover.webp" alt="Cover page of the techno-commercial offer" loading="lazy" width="760" height="1075">
           </div>
-          <div class="doc__act">
-            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" download="KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download PDF
-            </a>
-            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Read it here</span>
-            </button>
-            <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          <div class="doc__body">
+            <div class="eyebrow">Techno-commercial offer</div>
+            <h3>K.V.G. Medical College &amp; Hospital — 1.5 MLD MBR Quote</h3>
+            <p>The complete offer: introduction and team, prominent clients, design parameters, brief process description with the process flow diagram, the commercial offer and payment terms, the full electromechanical equipment schedule, detailed scope of work for supplier and client, other terms and conditions, and recent installations.</p>
+            <div class="doc__meta">
+              <span class="pill">15 pages</span>
+              <span class="pill">5.1 MB</span>
+              <span class="pill">Ref QT/STP/2026-27/76</span>
+              <span class="pill">2 August 2026</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" download="KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="Techno-commercial offer PDF" data-src="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf#view=FitH" loading="lazy"></iframe></div></div>
           </div>
-          <div class="doc__prev"><div><iframe title="Techno-commercial offer PDF" data-src="docs/KVG-1.5MLD-MBR-Techno-Commercial-Offer.pdf#view=FitH" loading="lazy"></iframe></div></div>
+        </div>
+
+        <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-ga-r2-cover.webp" alt="Plan sheet of the general arrangement drawing, revision of 25 August 2026" loading="lazy" width="900" height="636">
+          </div>
+          <div class="doc__body">
+            <div class="eyebrow">General arrangement drawing · current revision</div>
+            <h3>1.5 MLD MBR based STP — Tentative Plan, K.V.G. Medical College &amp; Hospital, Sullia</h3>
+            <p>Two sheets: the general arrangement plan with every process unit, the panel room and the 3 m baffle wall, and cross sections A-A, B-B and C-C with the tank schedule, structural notes and design basis. Aeration tanks at 5.0 m side water depth. Drawing AES/KVG/STP/PLN-01, issued for approval.</p>
+            <div class="doc__meta">
+              <span class="pill">2 sheets</span>
+              <span class="pill">0.5 MB</span>
+              <span class="pill">AES/KVG/STP/PLN-01</span>
+              <span class="pill pill--brick">25 August 2026</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing-Rev-25Aug2026.pdf" download="KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing-Rev-25Aug2026.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing-Rev-25Aug2026.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="#/engineering">See it on the Engineering sheet</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="General arrangement drawing PDF, revision of 25 August 2026" data-src="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing-Rev-25Aug2026.pdf#view=Fit" loading="lazy"></iframe></div></div>
+          </div>
+        </div>
+
+        <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-3d-cover.webp" alt="First sheet of the 3D tentative layout" loading="lazy" width="900" height="636">
+          </div>
+          <div class="doc__body">
+            <div class="eyebrow">3D model</div>
+            <h3>KVG Medical College &amp; Hospital — STP (MBR) Tentative Layout</h3>
+            <p>Six rendered views of the plant as modelled: an annotated aerial with every unit labelled, plus front approach, side elevation, rear, blower yard and a close view of the membrane lifting gantry. Modelled on the 30 July arrangement, before the 25 August revision re-oriented the tank block.</p>
+            <div class="doc__meta">
+              <span class="pill">6 sheets</span>
+              <span class="pill">24.6 MB</span>
+              <span class="pill">Tentative layout</span>
+              <span class="pill pill--amber">30 July arrangement</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" download="KVG-1.5MLD-MBR-STP-3D-Layout.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="#/engineering">See the views on the Engineering sheet</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="3D tentative layout PDF" data-src="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf#view=Fit" loading="lazy"></iframe></div></div>
+          </div>
+        </div>
+
+        <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-pid-cover.webp" alt="First sheet of the piping and instrumentation diagram" loading="lazy" width="900" height="568">
+          </div>
+          <div class="doc__body">
+            <div class="eyebrow">Piping &amp; instrumentation diagram</div>
+            <h3>1.5 MLD STP — MBR Process P&amp;ID</h3>
+            <p>Two sheets. Sheet 1 carries the full process, piping and instrumentation diagram with every pump, blower, valve and instrument tagged and wired back to control panel CP-01. Sheet 2 is the instrument index, line list and control philosophy that resolves every tag.</p>
+            <div class="doc__meta">
+              <span class="pill">2 sheets</span>
+              <span class="pill">0.6 MB</span>
+              <span class="pill">AES-KVG-1.5MLD-PID-01</span>
+              <span class="pill pill--amber">For review</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" download="KVG-1.5MLD-MBR-STP-PID.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-PID.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="Piping and instrumentation diagram PDF" data-src="docs/KVG-1.5MLD-MBR-STP-PID.pdf#view=Fit" loading="lazy"></iframe></div></div>
+          </div>
+        </div>
+
+        <div class="doc-sub">Supporting sheets</div>
+        <div class="grid grid-2">
+          <div class="doc doc--sm" data-reveal="scale">
+            <div class="doc__cover">
+              <img src="assets/doc-h-panel-cover.webp" alt="Control panel load list for the 1.5 MLD STP" loading="lazy" width="760" height="984">
+            </div>
+            <div class="doc__body">
+              <div class="eyebrow">Control panel load list</div>
+              <h3>1.5 MLD MBR based STP — Panel Load List</h3>
+              <p>All 22 drives with rating, supply and duty, plus field instruments, digital inputs and panel accessories for the MCC cum PLC panel.</p>
+              <div class="doc__meta">
+                <span class="pill">PDF · 2 pages</span>
+                <span class="pill">R0 · 25 Sep 2026</span>
+              </div>
+              <div class="doc__act">
+                <a class="btn btn--brick btn--sm" href="docs/KVG-1.5MLD-MBR-STP-Panel-Load-List.pdf" download>Download PDF</a>
+                <a class="btn btn--ghost btn--sm" href="docs/KVG-1.5MLD-MBR-STP-Panel-Load-List.pdf" target="_blank" rel="noopener">Open in new tab</a>
+              </div>
+            </div>
+          </div>
+          <div class="doc doc--sm" data-reveal="scale" style="--d:1">
+            <div class="doc__cover">
+              <img src="assets/doc-h-pfd-cover.webp" alt="Process flow diagram for the 1.5 MLD STP" loading="lazy" width="900" height="636">
+            </div>
+            <div class="doc__body">
+              <div class="eyebrow">Process flow diagram · revised</div>
+              <h3>1.5 MLD STP — Process Flow Diagram</h3>
+              <p>Step screen, oil and grease chamber, collection, anoxic, aeration and MBR tanks, permeate pumps, backwash, dosing, treated water and sludge holding to dewatering.</p>
+              <div class="doc__meta">
+                <span class="pill">PNG · 7016 × 4961</span>
+                <span class="pill">3.9 MB</span>
+              </div>
+              <div class="doc__act">
+                <a class="btn btn--brick btn--sm" href="docs/KVG-1.5MLD-MBR-STP-Process-Flow-Diagram.png" download>Download PNG</a>
+                <button class="btn btn--ghost btn--sm" data-zoom="assets/process-flow-r2.webp" data-cap="1.5 MLD STP — Process Flow Diagram (revised)">View full screen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-old" data-reveal>
+          <span><b>Earlier revision</b> — General arrangement drawing AES/KVG/STP/PLN-01 dated 30 July 2026, superseded by the 25 August revision above.</span>
+          <a class="btn btn--ghost btn--sm" href="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf" target="_blank" rel="noopener">Open the 30 July PDF</a>
         </div>
       </div>
 
-      <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
-        <div class="doc__cover">
-          <img src="assets/doc-plan-cover.webp" alt="First sheet of the general arrangement drawing" loading="lazy" width="900" height="636">
+      <!-- ─────────── PROJECT 02 ─────────── -->
+      <div class="doc-group doc-group--ay" data-group="ayurveda">
+        <div class="doc-group__h">
+          <div>
+            <div class="eyebrow">Project 02 · 200 KLD · AES/KVGA/STP/2026-27/112</div>
+            <h2>K.V.G. Ayurveda Medical College</h2>
+          </div>
+          <a class="btn btn--ghost btn--sm" href="#/ayurveda">Open the project sheet</a>
         </div>
-        <div class="doc__body">
-          <div class="eyebrow">General arrangement drawing</div>
-          <h3>1.5 MLD MBR based STP — Tentative Plan, K.V.G. Medical College &amp; Hospital, Sullia</h3>
-          <p>Two A1 sheets: the general arrangement plan with all nine process units and their internal dimensions, and cross sections A-A, B-B and C-C with the tank schedule, structural notes and design basis. Drawing AES/KVG/STP/PLN-01, issued for approval.</p>
-          <div class="doc__meta">
-            <span class="pill">2 sheets</span>
-            <span class="pill">0.8 MB</span>
-            <span class="pill">AES/KVG/STP/PLN-01</span>
-            <span class="pill">30 July 2026</span>
+
+        <div class="doc" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-ay-aer-cover.webp" alt="Aeration tank plan and sections for the 200 KLD STP" loading="lazy" width="900" height="636">
           </div>
-          <div class="doc__act">
-            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf" download="KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download PDF
-            </a>
-            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Read it here</span>
-            </button>
-            <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          <div class="doc__body">
+            <div class="eyebrow" style="color:var(--teal-lt)">General arrangement drawing</div>
+            <h3>200 KLD STP Plan — Aeration Tank, K.V.G. Ayurveda Medical College, Sullia</h3>
+            <p>One sheet: the aeration tank plan at 9.52 × 4.35 m with the existing footings hatched inside it, two 0.6 × 0.6 m manholes, and cross sections A-A and B-B showing the 3.65 m liquid depth and 0.30 m free board.</p>
+            <div class="doc__meta">
+              <span class="pill">1 sheet</span>
+              <span class="pill">0.2 MB</span>
+              <span class="pill">AES/KVG/STP/PLN/SEC-01</span>
+              <span class="pill pill--teal">28 September 2026</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--teal" href="docs/KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf" download="KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="docs/KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="200 KLD aeration tank drawing PDF" data-src="docs/KVGA-200KLD-MBR-STP-Aeration-Tank-GA.pdf#view=Fit" loading="lazy"></iframe></div></div>
           </div>
-          <div class="doc__prev"><div><iframe title="General arrangement drawing PDF" data-src="docs/KVG-1.5MLD-MBR-STP-General-Arrangement-Drawing.pdf#view=Fit" loading="lazy"></iframe></div></div>
+        </div>
+
+        <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
+          <div class="doc__cover">
+            <img src="assets/doc-ay-mbr-cover.webp" alt="MBR tank plan and section for the 200 KLD STP" loading="lazy" width="900" height="636">
+          </div>
+          <div class="doc__body">
+            <div class="eyebrow" style="color:var(--teal-lt)">General arrangement drawing</div>
+            <h3>200 KLD STP — MBR Tank Plan, K.V.G. Ayurveda Medical College, Sullia</h3>
+            <p>One sheet: the 4.0 × 2.0 × 3.0 m MBR tank in plan and section A-A, with the two membrane cassettes, their spacing, the air connection elbows and the water connection couplers.</p>
+            <div class="doc__meta">
+              <span class="pill">1 sheet</span>
+              <span class="pill">0.6 MB</span>
+              <span class="pill">AES/KVG/STP/PLN/SEC-01</span>
+              <span class="pill pill--teal">29 September 2026</span>
+            </div>
+            <div class="doc__act">
+              <a class="btn btn--teal" href="docs/KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf" download="KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+              <button class="btn btn--ghost" data-preview="docs/KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Read it here</span>
+              </button>
+              <a class="btn btn--ghost" href="docs/KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+            <div class="doc__prev"><div><iframe title="200 KLD MBR tank drawing PDF" data-src="docs/KVGA-200KLD-MBR-STP-MBR-Tank-GA.pdf#view=Fit" loading="lazy"></iframe></div></div>
+          </div>
+        </div>
+
+        <div class="doc-sub">Supporting sheets</div>
+        <div class="grid grid-2">
+          <div class="doc doc--sm" data-reveal="scale">
+            <div class="doc__cover">
+              <img src="assets/doc-ay-panel-cover.webp" alt="Control panel load list for the 200 KLD STP" loading="lazy" width="760" height="984">
+            </div>
+            <div class="doc__body">
+              <div class="eyebrow" style="color:var(--teal-lt)">Control panel load list</div>
+              <h3>200 KLD MBR based STP — Panel Load List</h3>
+              <p>All 16 drives with rating, supply and duty, plus field instruments, digital inputs and panel accessories for the MCC cum PLC panel.</p>
+              <div class="doc__meta">
+                <span class="pill">PDF · 1 page</span>
+                <span class="pill">R0 · 25 Sep 2026</span>
+              </div>
+              <div class="doc__act">
+                <a class="btn btn--teal btn--sm" href="docs/KVGA-200KLD-MBR-STP-Panel-Load-List.pdf" download>Download PDF</a>
+                <a class="btn btn--ghost btn--sm" href="docs/KVGA-200KLD-MBR-STP-Panel-Load-List.pdf" target="_blank" rel="noopener">Open in new tab</a>
+              </div>
+            </div>
+          </div>
+          <div class="doc doc--sm" data-reveal="scale" style="--d:1">
+            <div class="doc__cover">
+              <img src="assets/doc-ay-pfd-cover.webp" alt="Process flow diagram for the 200 KLD STP" loading="lazy" width="900" height="636">
+            </div>
+            <div class="doc__body">
+              <div class="eyebrow" style="color:var(--teal-lt)">Process flow diagram</div>
+              <h3>200 KLD STP — Process Flow Diagram</h3>
+              <p>Static screen, oil and grease chamber, collection, aeration and MBR tanks, permeate pumps, backwash, dosing, treated water tank and sludge drying bed.</p>
+              <div class="doc__meta">
+                <span class="pill">PNG · 7016 × 4961</span>
+                <span class="pill">3.8 MB</span>
+              </div>
+              <div class="doc__act">
+                <a class="btn btn--teal btn--sm" href="docs/KVGA-200KLD-MBR-STP-Process-Flow-Diagram.png" download>Download PNG</a>
+                <button class="btn btn--ghost btn--sm" data-zoom="assets/ay-process-flow.webp" data-cap="K.V.G. Ayurveda Medical College — 200 KLD STP, Process Flow Diagram">View full screen</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
-        <div class="doc__cover">
-          <img src="assets/doc-3d-cover.webp" alt="First sheet of the 3D tentative layout" loading="lazy" width="900" height="636">
-        </div>
-        <div class="doc__body">
-          <div class="eyebrow">3D model</div>
-          <h3>KVG Medical College &amp; Hospital — STP (MBR) Tentative Layout</h3>
-          <p>Six rendered views of the plant as modelled: an annotated aerial with every unit labelled, plus front approach, side elevation, rear, blower yard and a close view of the membrane lifting gantry. The clearest way to see how the general arrangement sits on the ground.</p>
-          <div class="doc__meta">
-            <span class="pill">6 sheets</span>
-            <span class="pill">24.6 MB</span>
-            <span class="pill">Tentative layout</span>
-          </div>
-          <div class="doc__act">
-            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" download="KVG-1.5MLD-MBR-STP-3D-Layout.pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download PDF
-            </a>
-            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Read it here</span>
-            </button>
-            <a class="btn btn--ghost" href="#/engineering">See the views on the Engineering sheet</a>
-          </div>
-          <div class="doc__prev"><div><iframe title="3D tentative layout PDF" data-src="docs/KVG-1.5MLD-MBR-STP-3D-Layout.pdf#view=Fit" loading="lazy"></iframe></div></div>
-        </div>
-      </div>
-
-      <div class="doc" style="margin-top:1.8rem" data-reveal="scale">
-        <div class="doc__cover">
-          <img src="assets/doc-pid-cover.webp" alt="First sheet of the piping and instrumentation diagram" loading="lazy" width="900" height="568">
-        </div>
-        <div class="doc__body">
-          <div class="eyebrow">Piping &amp; instrumentation diagram</div>
-          <h3>1.5 MLD STP — MBR Process P&amp;ID</h3>
-          <p>Two sheets. Sheet 1 carries the full process, piping and instrumentation diagram with every pump, blower, valve and instrument tagged and wired back to control panel CP-01. Sheet 2 is the instrument index, line list and control philosophy that resolves every tag.</p>
-          <div class="doc__meta">
-            <span class="pill">2 sheets</span>
-            <span class="pill">0.6 MB</span>
-            <span class="pill">AES-KVG-1.5MLD-PID-01</span>
-            <span class="pill pill--amber">For review</span>
-          </div>
-          <div class="doc__act">
-            <a class="btn btn--brick" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" download="KVG-1.5MLD-MBR-STP-PID.pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download PDF
-            </a>
-            <button class="btn btn--ghost" data-preview="docs/KVG-1.5MLD-MBR-STP-PID.pdf" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Read it here</span>
-            </button>
-            <a class="btn btn--ghost" href="docs/KVG-1.5MLD-MBR-STP-PID.pdf" target="_blank" rel="noopener">Open in new tab</a>
-          </div>
-          <div class="doc__prev"><div><iframe title="Piping and instrumentation diagram PDF" data-src="docs/KVG-1.5MLD-MBR-STP-PID.pdf#view=Fit" loading="lazy"></iframe></div></div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:2.2rem;border-left:3px solid var(--teal-lt)" data-reveal>
+      <div class="card" style="margin-top:clamp(2.4rem,5vw,3.4rem);border-left:3px solid var(--teal-lt)" data-reveal>
         <div class="eyebrow">Where each document appears on this site</div>
         <div class="grid grid-2" style="margin-top:1.2rem">
-          <ul class="checks">
-            <li>Design parameters and treated water guarantee → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
-            <li>Process description and process flow diagram → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
-            <li>General arrangement plan, sections and tank schedule → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
-            <li>Project timeline and phase breakdown → <a href="#/programme" style="color:var(--brick)">Programme</a></li>
-          </ul>
-          <ul class="checks">
-            <li>Price, payment terms and delivery → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
-            <li>Full equipment schedule → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
-            <li>Scope of work and terms &amp; conditions → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
-            <li>Team, clients and recent installations → <a href="#/record" style="color:var(--brick)">Track record</a></li>
-            <li>3D model views and annotated layout → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
-            <li>P&amp;ID, instrument tags and control philosophy → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
-          </ul>
+          <div>
+            <h3 class="h-sub" style="font-size:1rem;color:var(--brick)">1.5 MLD · Hospital</h3>
+            <ul class="checks">
+              <li>Design parameters, treated water guarantee, process and flow diagram → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
+              <li>General arrangement plan, sections and tank schedule → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
+              <li>3D model views, P&amp;ID and panel load list → <a href="#/engineering" style="color:var(--brick)">Engineering</a></li>
+              <li>Project timeline and phase breakdown → <a href="#/programme" style="color:var(--brick)">Programme</a></li>
+              <li>Price, payment, equipment schedule, scope and terms → <a href="#/commercial" style="color:var(--brick)">Commercial</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h-sub" style="font-size:1rem;color:var(--teal-lt)">200 KLD · Ayurveda</h3>
+            <ul class="checks">
+              <li>Process description and flow diagram → <a href="#/ayurveda" style="color:var(--teal-lt)">Ayurveda sheet, Process</a></li>
+              <li>Aeration tank plan, sections and key dimensions → <a href="#/ayurveda" style="color:var(--teal-lt)">Ayurveda sheet, Aeration tank</a></li>
+              <li>MBR tank plan and section → <a href="#/ayurveda" style="color:var(--teal-lt)">Ayurveda sheet, MBR tank</a></li>
+              <li>Panel load list → <a href="#/ayurveda" style="color:var(--teal-lt)">Ayurveda sheet, Load list</a></li>
+              <li>Side-by-side comparison with the hospital plant → <a href="#/overview" style="color:var(--teal-lt)">Overview</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -2977,8 +3938,8 @@ footer.site .f-bot{
   </section>
 
   <nav class="pagenav" aria-label="Page navigation">
-    <a class="prev" href="#/record"><span class="pn-k">Previous — 05</span><span class="pn-t">Track record</span></a>
-    <a class="next" href="#/vision"><span class="pn-k">Back to the start</span><span class="pn-t">Vision</span></a>
+    <a class="prev" href="#/record"><span class="pn-k">Previous — both projects</span><span class="pn-t">Track record</span></a>
+    <a class="next" href="#/overview"><span class="pn-k">Back to the start</span><span class="pn-t">Overview</span></a>
   </nav>
 </article>
 
@@ -3007,10 +3968,10 @@ footer.site .f-bot{
           <a href="https://aapaavani.com" target="_blank" rel="noopener">aapaavani.com</a>
         </div>
         <div>
-          <div class="f-h">This proposal</div>
-          <a href="#/documents">Techno-commercial offer</a><br>
-          <a href="#/documents">General arrangement drawing</a><br>
-          Drg AES/KVG/STP/PLN-01
+          <div class="f-h">The two proposals</div>
+          <a href="#/vision">1.5 MLD · K.V.G. Medical College &amp; Hospital</a><br>
+          <a href="#/ayurveda">200 KLD · K.V.G. Ayurveda Medical College</a><br>
+          <a href="#/documents">All documents</a>
           <div class="f-h" style="margin-top:1.1rem">Follow</div>
           <a href="https://in.linkedin.com/company/aapaavani-environmental-solutions" target="_blank" rel="noopener">LinkedIn</a> ·
           <a href="https://www.instagram.com/aapaavanienvironmental/" target="_blank" rel="noopener">Instagram</a> ·
@@ -3019,7 +3980,7 @@ footer.site .f-bot{
       </div>
     </div>
     <div class="f-bot">
-      <span>K.V.G. Medical College &amp; Hospital — 1.5 MLD MBR STP · Rev A</span>
+      <span>K.V.G. Sullia — 1.5 MLD &amp; 200 KLD MBR STPs · Rev B</span>
       <span>© Aapaavani Environmental Solutions Pvt Ltd · Confidential</span>
     </div>
   </div>
@@ -3055,8 +4016,8 @@ var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySel
 /* ══════════════════════════════════════════════════════
    ROUTER
    ══════════════════════════════════════════════════════ */
-var PAGES = ['vision','engineering','programme','commercial','record','documents'];
-var BASE_TITLE = 'KVG Medical College & Hospital — 1.5 MLD MBR STP · Aapaavani';
+var PAGES = ['overview','vision','engineering','programme','commercial','ayurveda','record','documents'];
+var BASE_TITLE = 'K.V.G. Sullia — 1.5 MLD & 200 KLD MBR STPs · Aapaavani';
 var current = null;
 
 function routeName(){
@@ -3064,10 +4025,17 @@ function routeName(){
   return PAGES.indexOf(h) > -1 ? h : PAGES[0];
 }
 
+function routeQuery(key){
+  var q = (location.hash || '').split('?')[1] || '';
+  var m = q.match(new RegExp('(?:^|&)' + key + '=([^&]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
 function setNavState(name){
-  $$('.nav-a, .drawer-a').forEach(function(a){
+  $$('.nav-a, .drawer-a, .projbar__tabs a').forEach(function(a){
     var t = (a.getAttribute('href') || '').replace('#/','');
-    if(t === name) a.setAttribute('aria-current','page');
+    var group = (a.dataset.routes || '').split(' ');
+    if(t === name || group.indexOf(name) > -1) a.setAttribute('aria-current','page');
     else a.removeAttribute('aria-current');
   });
   var dl = $('.nav-dl');
@@ -3113,7 +4081,39 @@ function replayHeroAnim(page){
   });
 }
 
-window.addEventListener('hashchange', function(){ show(routeName()); });
+window.addEventListener('hashchange', function(){ show(routeName()); applyDocFilter(); });
+
+/* ══════════════════════════════════════════════════════
+   DOCUMENTS — per-project filter (#/documents?p=hospital|ayurveda)
+   ══════════════════════════════════════════════════════ */
+function setDocFilter(f){
+  if(f !== 'hospital' && f !== 'ayurveda') f = 'all';
+  $$('.seg [data-filter]').forEach(function(b){
+    b.setAttribute('aria-pressed', b.dataset.filter === f ? 'true' : 'false');
+  });
+  $$('.doc-group[data-group]').forEach(function(g){
+    g.hidden = !(f === 'all' || g.dataset.group === f);
+    if(!g.hidden) $$('[data-reveal]', g).forEach(function(el){ el.classList.add('in'); });
+  });
+}
+function applyDocFilter(){
+  if(routeName() === 'documents') setDocFilter(routeQuery('p'));
+}
+$$('.seg [data-filter]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var f = b.dataset.filter;
+    history.replaceState(null, '', '#/documents' + (f === 'all' ? '' : '?p=' + f));
+    setDocFilter(f);
+  });
+});
+
+/* in-page jumps on single-sheet projects */
+$$('[data-jump]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = document.getElementById(b.dataset.jump);
+    if(t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+});
 
 /* ══════════════════════════════════════════════════════
    REVEAL + ONE-SHOT ANIMATION TRIGGERS
@@ -3133,7 +4133,7 @@ if('IntersectionObserver' in window && !reduce){
 }
 
 function observeIn(root){
-  var targets = $$('[data-reveal], [data-viz], .screen-viz, .mbr-viz, .gantt, [data-count], [data-paybar], #qualityTable tbody tr, #processSvg', root);
+  var targets = $$('[data-reveal], [data-viz], .screen-viz, .mbr-viz, .gantt, [data-count], [data-paybar], #qualityTable tbody tr, .flow-svg', root);
   targets.forEach(function(el){
     if(el.dataset.observed) return;
     el.dataset.observed = '1';
@@ -3142,8 +4142,9 @@ function observeIn(root){
   });
   if(io){
     // process-flow path draw
-    var svg = root.querySelector('#processSvg');
-    if(svg && !svg.dataset.drawn) initFlow(svg);
+    $$('.flow-svg', root).forEach(function(svg){
+      if(!svg.dataset.drawn) initFlow(svg);
+    });
   }
 }
 
@@ -3178,7 +4179,7 @@ function countUp(el){
    ══════════════════════════════════════════════════════ */
 function initFlow(svg){
   svg.dataset.drawn = '1';
-  var path = svg.querySelector('#flowpath');
+  var path = svg.querySelector('.flowpath');
   if(!path || !path.getTotalLength) return;
   var len = path.getTotalLength();
   path.style.strokeDasharray = len;
@@ -3239,8 +4240,8 @@ function buildParticles(){
     }
   });
 
-  var viz = $('#mbrViz');
-  if(viz && !viz.dataset.built){
+  $$('.mbr-viz').forEach(function(viz){
+    if(viz.dataset.built) return;
     viz.dataset.built = '1';
     var i2;
     for(i2 = 0; i2 < 16; i2++){
@@ -3267,7 +4268,7 @@ function buildParticles(){
       pd.style.animationDelay = rnd(0, 2.9) + 's';
       viz.appendChild(pd);
     }
-  }
+  });
 }
 
 /* ══════════════════════════════════════════════════════
@@ -3516,6 +4517,7 @@ document.addEventListener('keydown', function(e){
    ══════════════════════════════════════════════════════ */
 buildParticles();
 show(routeName(), { keepScroll: true });
+applyDocFilter();
 syncTopbar();
 
 // keep-alive observer for anything added later / images finishing load
